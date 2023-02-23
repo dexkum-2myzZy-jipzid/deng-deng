@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
-function SpeechTopicPage(props) {
+function SpeechTopicPage() {
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
+
   const [timer, setTimer] = useState(30);
   const [showAnswer, setShowAnswer] = useState(false);
   const [question, setQuestion] = useState(null);
   const [options, setOptions] = useState(null);
 
   useEffect(() => {
-    var data = require("./看题演讲/" + props.questionId + ".json");
+    var data = require("./看题演讲/" + id + ".json");
     setQuestion(data.data);
     setOptions(data.data.options);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const interval = setInterval(() => {
