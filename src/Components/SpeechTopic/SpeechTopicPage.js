@@ -39,16 +39,18 @@ function SpeechTopicPage() {
 
   return (
     <div style={styles.container}>
-      <h1>看题演讲</h1>
-      <div style={styles.timer} onClick={handleCountdownClick}>
-        {timer}s
+      <h1 style={styles.title}>看题演讲</h1>
+      <div onClick={handleCountdownClick}>
+        <p style={styles.timer}>{timer}s</p>
       </div>
-      <h3>Ready to answer the following questions in at least 30 seconds</h3>
+      <h3 style={styles.title}>
+        Ready to answer the following questions in at least 30 seconds
+      </h3>
       {question && (
         <div style={styles.container}>
           <p style={styles.question}>{question.subject}</p>
           {options && (
-            <ul>
+            <ul style={styles.question}>
               {options.map((e) => (
                 <li key={e.content} style={styles.list}>
                   {e.content}
@@ -59,16 +61,18 @@ function SpeechTopicPage() {
         </div>
       )}
       {showAnswer ? (
-        <div>
+        <div style={styles.answer}>
           <button style={styles.button} onClick={handleHideAnswer}>
             Hide Answer
           </button>
           {question && <p>{question.answer}</p>}
         </div>
       ) : (
-        <button style={styles.button} onClick={handleShowAnswer}>
-          Show Answer
-        </button>
+        <div style={styles.answer}>
+          <button style={styles.button} onClick={handleShowAnswer}>
+            Show Answer
+          </button>
+        </div>
       )}
     </div>
   );
@@ -85,19 +89,24 @@ const styles = {
     margin: "20px",
     alignItems: "center",
   },
+  title: {
+    textAlign: "center",
+  },
   timer: {
     color: "#FF0000",
+    textAlign: "center",
   },
   question: {
     fontSize: "18px",
     marginBottom: "20px",
+    textAlign: "center",
   },
   answer: {
-    display: "none",
-    fontSize: "18px",
-    marginTop: "20px",
+    textAlign: "center",
   },
   button: {
     marginTop: "20px",
+    textAlign: "center",
+    justifyContent: "center",
   },
 };
