@@ -1,0 +1,48 @@
+.collection-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.collection-item {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.image-container {
+  width: 100%;
+  height: 60%;
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-container {
+  padding: 20px;
+  height: 40%;
+  background-color: #f8f8f8;
+}
+
+.info-container h2 {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.info-container p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
