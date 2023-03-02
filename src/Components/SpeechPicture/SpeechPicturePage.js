@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
+import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 import styles from "./SpeechPicturePage.module.css";
 
 const SpeechPicturePage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const [question, setQuestion] = useState(null);
-  const [showAnswer, setShowAnswer] = useState(false);
   const [prepareTimer, setPrepareTimer] = useState(20);
   const [timer, setTimer] = useState(90);
 
   useEffect(() => {
     var data = require("./看图演讲/" + 1280 + ".json");
     setQuestion(data.data);
-    console.log(question);
   }, [question, id]);
 
   useEffect(() => {
@@ -39,13 +39,9 @@ const SpeechPicturePage = () => {
     return () => clearInterval(interval);
   }, [prepareTimer, timer]);
 
-  const onClickHandler = () => {
-    setShowAnswer(!showAnswer);
-  };
-
   const handleCountdownClick = () => {
     setTimer(90);
-    setShowAnswer(false);
+    //todo: hide show answer area
   };
 
   return question ? (
@@ -56,12 +52,8 @@ const SpeechPicturePage = () => {
       </h4>
       <h2>准备以至少30秒的时间描述所给图片</h2>
       <img className={styles.img} src={question.photo} alt="logo.svg" />
-      <div>
-        <button onClick={onClickHandler}>
-          {showAnswer ? "Hide Answer" : "Show Answer"}
-        </button>
-        {showAnswer && <p>{question.answer}</p>}
-      </div>
+      <ShowAnswer answer={question.answer} />
+      <DifficultyLabel difficulty={question.difficultyName} />
     </div>
   ) : (
     <div></div>

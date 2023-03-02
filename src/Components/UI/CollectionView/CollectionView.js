@@ -13,6 +13,8 @@ const CollectionView = () => {
       navigate(`/speechtopicpage?id=${item}`);
     } else if (type === "speechpicture") {
       navigate(`/speechpicturepage?id=${item}`);
+    } else if (type === "writesentence") {
+      navigate(`/writesentence?id=${item}`);
     }
   };
 

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
+import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 
 function SpeechTopicPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
   const [timer, setTimer] = useState(30);
-  const [showAnswer, setShowAnswer] = useState(false);
   const [question, setQuestion] = useState(null);
   const [options, setOptions] = useState(null);
 
@@ -26,15 +27,7 @@ function SpeechTopicPage() {
 
   const handleCountdownClick = () => {
     setTimer(30);
-    setShowAnswer(false);
-  };
-
-  const handleShowAnswer = () => {
-    setShowAnswer(true);
-  };
-
-  const handleHideAnswer = () => {
-    setShowAnswer(false);
+    //todo: hide show answer area
   };
 
   return (
@@ -60,20 +53,8 @@ function SpeechTopicPage() {
           )}
         </div>
       )}
-      {showAnswer ? (
-        <div style={styles.answer}>
-          <button style={styles.button} onClick={handleHideAnswer}>
-            Hide Answer
-          </button>
-          {question && <p>{question.answer}</p>}
-        </div>
-      ) : (
-        <div style={styles.answer}>
-          <button style={styles.button} onClick={handleShowAnswer}>
-            Show Answer
-          </button>
-        </div>
-      )}
+      {question && <ShowAnswer answer={question.answer} />}
+      {question && <DifficultyLabel difficulty={question.difficultyName} />}
     </div>
   );
 }
