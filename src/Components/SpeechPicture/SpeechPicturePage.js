@@ -7,14 +7,11 @@ import styles from "./SpeechPicturePage.module.css";
 const SpeechPicturePage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const [question, setQuestion] = useState(null);
   const [prepareTimer, setPrepareTimer] = useState(20);
   const [timer, setTimer] = useState(90);
 
-  useEffect(() => {
-    var data = require("./看图演讲/" + 1280 + ".json");
-    setQuestion(data.data);
-  }, [question, id]);
+  var data = require("./看图演讲/" + id + ".json");
+  const question = data.data;
 
   useEffect(() => {
     const interval = setInterval(() => {

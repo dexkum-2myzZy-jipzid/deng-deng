@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
+import ProgressBar from "../UI/ProgressBar";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 import styles from "./WriteSentencePage.module.css";
 
@@ -32,23 +33,7 @@ const WriteSentencePage = () => {
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
       </div>
-      <div
-        style={{
-          height: "5px",
-          width: "100%",
-          backgroundColor: "lightGray",
-          marginTop: "10px",
-          alignSelf: "start",
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: `${progressWidth}%`,
-            backgroundColor: "orange",
-          }}
-        />
-      </div>
+      <ProgressBar progressWidth={progressWidth} />
       <div
         style={{ display: "flex", marginTop: "10px", justifyContent: "center" }}
       >

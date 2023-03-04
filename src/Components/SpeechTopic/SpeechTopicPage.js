@@ -6,16 +6,11 @@ import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 function SpeechTopicPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-
   const [timer, setTimer] = useState(30);
-  const [question, setQuestion] = useState(null);
-  const [options, setOptions] = useState(null);
 
-  useEffect(() => {
-    var data = require("./看题演讲/" + id + ".json");
-    setQuestion(data.data);
-    setOptions(data.data.options);
-  }, [id]);
+  var data = require("./看题演讲/" + id + ".json");
+  const question = data.data;
+  const options = question.options;
 
   useEffect(() => {
     const interval = setInterval(() => {
