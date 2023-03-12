@@ -5,6 +5,7 @@ import SpeechTopicPage from "./Components/SpeechTopic/SpeechTopicPage";
 import SpeechPicturePage from "./Components/SpeechPicture/SpeechPicturePage";
 import CollectionView from "./Components/UI/CollectionView/CollectionView";
 import WriteSentencePage from "./Components/WriteSentence/WriteSentencePage";
+import WordDiscriminationPage from "./Components/WordDiscrimination/WordDiscriminationPage";
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
       <Route path="/speechtopicpage" element={<SpeechTopicPage />}></Route>
       <Route path="/speechpicturepage" element={<SpeechPicturePage />}></Route>
       <Route path="/writesentence" element={<WriteSentencePage />}></Route>
+      <Route
+        path="/worddiscrimination"
+        element={<WordDiscriminationPage />}
+      ></Route>
     </Routes>
   );
 }

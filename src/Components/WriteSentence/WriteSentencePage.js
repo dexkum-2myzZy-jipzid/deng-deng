@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
 import ProgressBar from "../UI/ProgressBar";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
+import secondsToMmSs from "../Utils";
 import styles from "./WriteSentencePage.module.css";
 
 const WriteSentencePage = () => {
@@ -59,12 +60,3 @@ const WriteSentencePage = () => {
 };
 
 export default WriteSentencePage;
-
-function secondsToMmSs(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  const formattedSeconds =
-    remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
-  return `${formattedMinutes}:${formattedSeconds}`;
-}

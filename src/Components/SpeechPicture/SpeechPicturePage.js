@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
+import secondsToMmSs from "../Utils";
 import styles from "./SpeechPicturePage.module.css";
 
 const SpeechPicturePage = () => {
@@ -58,12 +59,3 @@ const SpeechPicturePage = () => {
 };
 
 export default SpeechPicturePage;
-
-function secondsToMmSs(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  const formattedSeconds =
-    remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
-  return `${formattedMinutes}:${formattedSeconds}`;
-}

@@ -3,7 +3,8 @@ import "./NumberList.css";
 import Questions from "./Questions";
 
 const Home = () => {
-  const { topicArray, pictureArray, sentenceArray } = Questions();
+  const { topicArray, pictureArray, sentenceArray, wordDiscriminationArray } =
+    Questions();
   const navigate = useNavigate();
 
   const onClickHandler = (type) => {
@@ -16,6 +17,9 @@ const Home = () => {
     } else if (type === "writesentence") {
       const myArrayString = sentenceArray.join(",");
       navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "worddiscrimination") {
+      const myArrayString = wordDiscriminationArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
     }
   };
 
@@ -23,6 +27,7 @@ const Home = () => {
     { type: "speechtopic", title: "看题演讲" },
     { type: "speechpicture", title: "看图演讲" },
     { type: "writesentence", title: "看图写句" },
+    { type: "worddiscrimination", title: "单词辨析" },
   ];
 
   return (
