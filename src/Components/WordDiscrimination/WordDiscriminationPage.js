@@ -37,7 +37,11 @@ function WordDiscriminationPage() {
 
   const onClickWordItemHandler = (index) => {
     setSelectedArray((preState) => {
-      return [...preState, index];
+      if (preState.includes(index)) {
+        return preState.filter((e) => e !== index);
+      } else {
+        return [...preState, index];
+      }
     });
   };
 
