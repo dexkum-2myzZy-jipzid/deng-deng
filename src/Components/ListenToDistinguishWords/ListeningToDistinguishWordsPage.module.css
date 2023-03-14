@@ -1,0 +1,80 @@
+.container {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.collection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.collectionItem {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100px;
+  height: 50px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.red {
+  color: white;
+  background-color: #fc0d1b;
+}
+
+.orange {
+  color: white;
+  background-color: #f8812e;
+}
+
+.green {
+  color: white;
+  background-color: #47b255;
+}
+
+.card {
+  background-color: #fff6e9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  padding: 20px;
+  list-style-type: none;
+  text-align: left;
+  align-items: normal;
+}
+
+.speaker {
+  border: 1px solid #ddd;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: gray;
+}
+
+.check {
+  border: 1px solid #ddd;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: gray;
+  /* background-color: #f8812e; */
+}

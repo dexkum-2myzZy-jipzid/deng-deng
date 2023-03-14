@@ -6,6 +6,7 @@ import SpeechPicturePage from "./Components/SpeechPicture/SpeechPicturePage";
 import CollectionView from "./Components/UI/CollectionView/CollectionView";
 import WriteSentencePage from "./Components/WriteSentence/WriteSentencePage";
 import WordDiscriminationPage from "./Components/WordDiscrimination/WordDiscriminationPage";
+import ListenToDistinguishWordsPage from "./Components/ListenToDistinguishWords/ListeningToDistinguishWordsPage";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
       <Route
         path="/worddiscrimination"
         element={<WordDiscriminationPage />}
+      ></Route>
+      <Route
+        path="/listentodistinguishwords"
+        element={<ListenToDistinguishWordsPage />}
       ></Route>
     </Routes>
   );
