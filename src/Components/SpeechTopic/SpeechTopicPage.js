@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
+import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 
 function SpeechTopicPage() {
@@ -8,7 +8,9 @@ function SpeechTopicPage() {
   const id = searchParams.get("id");
   const [timer, setTimer] = useState(30);
 
-  var data = require("./看题演讲/" + id + ".json");
+  const data = require("../../QuestionCollection/口语/看题演讲/" +
+    id +
+    ".json");
   const question = data.data;
   const options = question.options;
 
@@ -27,6 +29,12 @@ function SpeechTopicPage() {
 
   return (
     <div style={styles.container}>
+      <DifficultyLabelAndNext
+        difficulty={question.difficultyName}
+        arrayType={"topicArray"}
+        id={id}
+        path={"speechtopicpage"}
+      />
       <h1 style={styles.title}>看题演讲</h1>
       <div onClick={handleCountdownClick}>
         <p style={styles.timer}>{timer}s</p>
@@ -49,7 +57,6 @@ function SpeechTopicPage() {
         </div>
       )}
       {question && <ShowAnswer answer={question.answer} />}
-      {question && <DifficultyLabel difficulty={question.difficultyName} />}
     </div>
   );
 }

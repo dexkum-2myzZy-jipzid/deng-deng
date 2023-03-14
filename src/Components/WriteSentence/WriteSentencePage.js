@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
+import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 import secondsToMmSs from "../Utils";
@@ -12,7 +12,9 @@ const WriteSentencePage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  const data = require("./看图写句/" + id + ".json");
+  const data = require("../../QuestionCollection/写作/看图写句/" +
+    id +
+    ".json");
   const question = data.data;
 
   useEffect(() => {
@@ -31,6 +33,12 @@ const WriteSentencePage = () => {
 
   return (
     <div className={styles.container}>
+      <DifficultyLabelAndNext
+        difficulty={question.difficultyName}
+        arrayType={"sentenceArray"}
+        id={id}
+        path={"writesentence"}
+      />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
       </div>
@@ -54,7 +62,6 @@ const WriteSentencePage = () => {
       </div>
       <p>字数：{inputText.length}</p>
       <ShowAnswer answer={question.answer} />
-      <DifficultyLabel difficulty={question.difficultyName} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import DifficultyLabel from "../UI/DifficultyLabel/DifficultyLabel";
+import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
 import secondsToMmSs from "../Utils";
 import styles from "./WordDiscriminationPage.module.css";
@@ -11,7 +11,9 @@ function WordDiscriminationPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  const data = require("./单词辨析/" + id + ".json");
+  const data = require("../../QuestionCollection/词汇/单词辨析/" +
+    id +
+    ".json");
   const question = data.data;
   const array = question.options;
   const words = question.options.filter((e) => {
@@ -75,7 +77,12 @@ function WordDiscriminationPage() {
 
   return (
     <div className={styles.container}>
-      <DifficultyLabel difficulty={question.difficultyName} />
+      <DifficultyLabelAndNext
+        difficulty={question.difficultyName}
+        arrayType={"wordDiscriminationArray"}
+        id={id}
+        path={"worddiscrimination"}
+      />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
       </div>
