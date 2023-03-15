@@ -19,6 +19,8 @@ const CollectionView = () => {
       navigate(`/worddiscrimination?id=${item}`);
     } else if (type === "listentodistinguishwords") {
       navigate(`/listentodistinguishwords?id=${item}`);
+    } else if (type === "fillwords") {
+      navigate(`/fillwords?id=${item}`);
     }
   };
 

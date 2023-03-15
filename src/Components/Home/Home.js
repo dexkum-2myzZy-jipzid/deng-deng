@@ -9,6 +9,7 @@ const Home = () => {
     sentenceArray,
     wordDiscriminationArray,
     listentodistinguishwordsArray,
+    fillWordsArray,
   } = Questions();
   const navigate = useNavigate();
 
@@ -28,6 +29,9 @@ const Home = () => {
     } else if (type === "listentodistinguishwords") {
       const myArrayString = listentodistinguishwordsArray.join(",");
       navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "fillwords") {
+      const myArrayString = fillWordsArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
     }
   };
 
@@ -37,6 +41,7 @@ const Home = () => {
     { type: "writesentence", title: "看图写句" },
     { type: "worddiscrimination", title: "单词辨析" },
     { type: "listentodistinguishwords", title: "听音辩词" },
+    { type: "fillwords", title: "单词填空" },
   ];
 
   return (
