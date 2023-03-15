@@ -139,12 +139,13 @@ function WordDiscriminationPage() {
                   </audio>
                 </div>
                 <ul>
-                  {e["explains"]
-                    .slice(1, -1)
-                    .split(",")
-                    .map((val, index) => {
-                      return <li key={index}>{val.slice(1, -1)}</li>;
-                    })}
+                  {e["explains"] != null &&
+                    e["explains"]
+                      .slice(1, -1)
+                      .split(",")
+                      .map((val, index) => {
+                        return <li key={index}>{val.slice(1, -1)}</li>;
+                      })}
                 </ul>
               </li>
             );
