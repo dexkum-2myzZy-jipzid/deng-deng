@@ -39,6 +39,9 @@ function DifficultyLabelAndNext(props) {
   return (
     <div style={container}>
       <div style={label}>{props.difficulty}</div>
+      <font size="+2" style={{ fontWeight: "bold" }}>
+        题号：{props.id}
+      </font>
       <button
         style={button}
         onClick={() => clickNextHandler(props.arrayType, props.id, props.path)}
