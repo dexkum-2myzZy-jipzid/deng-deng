@@ -27,15 +27,12 @@ function DifficultyLabelAndNext(props) {
     height: "40px",
   };
 
-  const navigate = useNavigate();
-
   const clickNextHandler = (arrayType, id, path) => {
     const array = Questions()[arrayType];
     const index = array.indexOf(parseInt(id));
     if (index < array.length - 1) {
       const item = array[index + 1];
-      navigate(`/${path}?id=${item}`);
-      window.location.reload(true);
+      window.location.replace(`/${path}?id=${item}`);
     }
   };
 
