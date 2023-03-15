@@ -37,6 +37,11 @@
   padding: 1em;
 }
 
+.gray {
+  color: white;
+  background-color: gray;
+}
+
 .red {
   color: white;
   background-color: #fc0d1b;

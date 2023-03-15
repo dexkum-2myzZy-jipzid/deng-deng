@@ -71,7 +71,7 @@ function WordDiscriminationPage() {
           [styles.green]: showAnswerResult(option, index)[2],
         })
       : classNames(styles.collectionItem, {
-          [styles.orange]: selectedArray.includes(index),
+          [styles.gray]: selectedArray.includes(index),
         });
   };
 
