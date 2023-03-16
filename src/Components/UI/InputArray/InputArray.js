@@ -13,6 +13,11 @@ function InputArray(props) {
   const wrong =
     props.showAnswer && values.join("").localeCompare(props.word) !== 0;
 
+  const suffix =
+    props.partBlank.length > props.word.length
+      ? props.partBlank.substring(props.word.length, props.partBlank.length)
+      : "  ";
+
   const handleChange = (index, event) => {
     const newValues = [...values];
     newValues[index] = event.target.value;
@@ -69,7 +74,7 @@ function InputArray(props) {
           margin: "10px 10px 10px 0",
         }}
       >
-        {"  "}
+        {suffix}
       </span>
     </Fragment>
   );

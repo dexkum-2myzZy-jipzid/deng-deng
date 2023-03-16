@@ -26,11 +26,20 @@ function DifficultyLabelAndNext(props) {
     height: "40px",
   };
 
-  const clickNextHandler = (arrayType, id, path) => {
+  const onClickNextHandler = (arrayType, id, path) => {
     const array = Questions()[arrayType];
     const index = array.indexOf(parseInt(id));
     if (index < array.length - 1) {
       const item = array[index + 1];
+      window.location.replace(`/${path}?id=${item}`);
+    }
+  };
+
+  const onClickPreviousHandler = (arrayType, id, path) => {
+    const array = Questions()[arrayType];
+    const index = array.indexOf(parseInt(id));
+    if (index > 0) {
+      const item = array[index - 1];
       window.location.replace(`/${path}?id=${item}`);
     }
   };
@@ -41,12 +50,24 @@ function DifficultyLabelAndNext(props) {
       <font size="+2" style={{ fontWeight: "bold" }}>
         题号：{props.id}
       </font>
-      <button
-        style={button}
-        onClick={() => clickNextHandler(props.arrayType, props.id, props.path)}
-      >
-        Next
-      </button>
+      <div>
+        <button
+          style={button}
+          onClick={() =>
+            onClickPreviousHandler(props.arrayType, props.id, props.path)
+          }
+        >
+          {"< Previous"}
+        </button>
+        <button
+          style={button}
+          onClick={() =>
+            onClickNextHandler(props.arrayType, props.id, props.path)
+          }
+        >
+          {"Next >"}
+        </button>
+      </div>
     </div>
   );
 }
