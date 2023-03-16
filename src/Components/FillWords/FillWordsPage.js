@@ -73,6 +73,7 @@ const FillWordsPage = () => {
       )}
       <p></p>
       <button onClick={onSumbitHandler}>Submit</button>
+      {showAnswer && <p>{question.answer}</p>}
     </div>
   );
 };
