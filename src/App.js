@@ -7,6 +7,7 @@ import CollectionView from "./Components/UI/CollectionView/CollectionView";
 import WriteSentencePage from "./Components/WriteSentence/WriteSentencePage";
 import WordDiscriminationPage from "./Components/WordDiscrimination/WordDiscriminationPage";
 import ListenToDistinguishWordsPage from "./Components/ListenToDistinguishWords/ListeningToDistinguishWordsPage";
+import FillWordsPage from "./Components/FillWords/FillWordsPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         path="/listentodistinguishwords"
         element={<ListenToDistinguishWordsPage />}
       ></Route>
+      <Route path="/fillwords" element={<FillWordsPage />}></Route>
     </Routes>
   );
 }

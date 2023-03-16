@@ -1,0 +1,25 @@
+.input {
+  background-color: #f0f0f0;
+  border: 1px solid #d7d7d7;
+  align-items: center;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.red {
+  color: white;
+  background-color: #fc0d1b;
+}
+
+.orange {
+  color: white;
+  background-color: #f8812e;
+}
+
+.green {
+  color: white;
+  background-color: #47b255;
+}
