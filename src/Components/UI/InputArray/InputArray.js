@@ -25,6 +25,8 @@ function InputArray(props) {
 
     if (event.target.value.length === 1 && index < values.length - 1) {
       inputRefs.current[index + 1].focus();
+    } else if (event.target.value.length === 0) {
+      inputRefs.current[index - 1].focus();
     }
   };
 
