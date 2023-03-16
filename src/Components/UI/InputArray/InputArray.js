@@ -3,7 +3,11 @@ import React, { useState, useRef, Fragment } from "react";
 import styles from "./InputArray.module.css";
 
 function InputArray(props) {
-  const inputs = Array.from({ length: props.word.length }, () => "");
+  //展示单词数量
+  const defaultLetterCnt = props.partBlank.indexOf("_");
+  const inputs = Array.from({ length: props.word.length }, (_, i) =>
+    i < defaultLetterCnt ? props.partBlank[i] : ""
+  );
   const [values, setValues] = useState(inputs);
   const inputRefs = useRef([]);
   const wrong =
@@ -37,7 +41,7 @@ function InputArray(props) {
         <input
           key={index}
           className={
-            props.showAnswer
+            props.showAnswer && index >= defaultLetterCnt
               ? classNames(styles.input, {
                   [styles.orange]: styleColors(value, index)[0],
                   [styles.red]: styleColors(value, index)[1],
@@ -50,6 +54,7 @@ function InputArray(props) {
           value={value}
           onChange={(event) => handleChange(index, event)}
           ref={(el) => (inputRefs.current[index] = el)}
+          disabled={index < defaultLetterCnt ? true : false}
         />
       ))}
       {wrong && (

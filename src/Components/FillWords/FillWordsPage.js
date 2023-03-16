@@ -50,12 +50,13 @@ const FillWordsPage = () => {
       </div>
       <ProgressBar progressWidth={progressWidth} />
       <h2>{question.title}</h2>
-      {question.blankContent.split(" ").map((e, index) =>
+      {question.partBlankContent.split(" ").map((e, index) =>
         e.indexOf("_") !== -1 ? (
           <InputArray
             key={index.toString()}
             word={words.shift()}
             showAnswer={showAnswer}
+            partBlank={e}
           />
         ) : (
           <span
