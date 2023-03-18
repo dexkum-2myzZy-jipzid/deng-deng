@@ -47,6 +47,9 @@ const InteractiveReadingPage = () => {
 
   const onClickNextStepHandler = () => {
     setPageIndex((pre) => pre + 1);
+    if (pageIndex === 5) {
+      setShowAnswer(true);
+    }
   };
 
   // q1 content
@@ -150,6 +153,12 @@ const InteractiveReadingPage = () => {
                   type="radio"
                   name="q2Answer"
                   value=""
+                  checked={
+                    e["sentence"] &&
+                    e["sentence"].localeCompare(q2Result["sentence"]) === 0
+                      ? true
+                      : false
+                  }
                   onInput={() => onInputHandler(e, index)}
                 />
                 {e["sentence"]}
@@ -246,6 +255,112 @@ const InteractiveReadingPage = () => {
     </div>
   );
 
+  //q5
+  const [q5Result, setQ5Result] = useState(null);
+
+  const onInputQ5Handler = (e, index) => {
+    setQ5Result(e);
+  };
+
+  const content5 = (
+    <div className={styles.content}>
+      <div className={styles.left}>
+        <p>{question.q5.content}</p>
+      </div>
+      <div className={styles.right} style={{ flex: 1, marginTop: "20px" }}>
+        <p>选出段落大意</p>
+        {question.q5.options.map((e, index) => {
+          if (showAnswer) {
+            return (
+              <label style={e["correct"] === 1 ? { color: "green" } : {}}>
+                <input
+                  key={index}
+                  type="radio"
+                  name="q5Answer"
+                  value=""
+                  checked={
+                    e["sentence"] &&
+                    e["sentence"].localeCompare(q5Result["sentence"]) === 0
+                      ? true
+                      : false
+                  }
+                  onInput={() => onInputQ5Handler(e, index)}
+                />
+                {e["sentence"]}
+              </label>
+            );
+          } else {
+            return (
+              <label>
+                <input
+                  key={index}
+                  type="radio"
+                  name="q5Answer"
+                  value=""
+                  onInput={() => onInputQ5Handler(e, index)}
+                />
+                {e["sentence"]}
+              </label>
+            );
+          }
+        })}
+      </div>
+    </div>
+  );
+
+  //q6
+  const [q6Result, setQ6Result] = useState(null);
+
+  const onInputQ6Handler = (e, index) => {
+    setQ6Result(e);
+  };
+
+  const content6 = (
+    <div className={styles.content}>
+      <div className={styles.left}>
+        <p>{question.q6.content}</p>
+      </div>
+      <div className={styles.right} style={{ flex: 1, marginTop: "20px" }}>
+        <p>请选出这篇短文最适合的标题</p>
+        {question.q6.options.map((e, index) => {
+          if (showAnswer) {
+            return (
+              <label style={e["correct"] === 1 ? { color: "green" } : {}}>
+                <input
+                  key={index}
+                  type="radio"
+                  name="q6Answer"
+                  value=""
+                  checked={
+                    e["sentence"] &&
+                    e["sentence"].localeCompare(q6Result["sentence"]) === 0
+                      ? true
+                      : false
+                  }
+                  onInput={() => onInputQ6Handler(e, index)}
+                />
+                {e["sentence"]}
+              </label>
+            );
+          } else {
+            return (
+              <label>
+                <input
+                  key={index}
+                  type="radio"
+                  name="q6Answer"
+                  value=""
+                  onInput={() => onInputQ6Handler(e, index)}
+                />
+                {e["sentence"]}
+              </label>
+            );
+          }
+        })}
+      </div>
+    </div>
+  );
+
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
@@ -258,11 +373,19 @@ const InteractiveReadingPage = () => {
         <h2 style={{ color: "red" }}>{secondsToMmSs(timer)}</h2>
       </div>
       <ProgressBar progressWidth={progressWidth} />
-      <p>{"#" + id + "-" + (pageIndex + 1)}</p>
+      <p>{"#" + id + "-" + ((pageIndex + 1) % 7)}</p>
       {pageIndex === 0 && content1}
       {pageIndex === 1 && content2}
       {pageIndex === 2 && content3}
       {pageIndex === 3 && content4}
+      {pageIndex === 4 && content5}
+      {pageIndex === 5 && content6}
+      {pageIndex === 6 && content1}
+      {pageIndex === 7 && content2}
+      {pageIndex === 8 && content3}
+      {pageIndex === 9 && content4}
+      {pageIndex === 10 && content5}
+      {pageIndex === 11 && content6}
       {divider}
       <div
         style={{
@@ -289,14 +412,15 @@ const InteractiveReadingPage = () => {
             </div>
           </div>
         )}
-        <button
-          style={{ marginTop: "30px", width: "100px", height: "30px" }}
-          onClick={onClickNextStepHandler}
-        >
-          下一步
-        </button>
+        {pageIndex < 11 && (
+          <button
+            style={{ marginTop: "30px", width: "100px", height: "30px" }}
+            onClick={onClickNextStepHandler}
+          >
+            {pageIndex === 5 ? "提交答案" : "下一步"}
+          </button>
+        )}
       </div>
-      <button onClick={onSubmitHandle}>Submit</button>
     </div>
   );
 };
