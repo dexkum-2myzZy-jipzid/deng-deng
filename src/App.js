@@ -9,6 +9,7 @@ import WordDiscriminationPage from "./Components/WordDiscrimination/WordDiscrimi
 import ListenToDistinguishWordsPage from "./Components/ListenToDistinguishWords/ListeningToDistinguishWordsPage";
 import FillWordsPage from "./Components/FillWords/FillWordsPage";
 import InteractiveReadingPage from "./Components/InteractiveReading/InteractiveReadingPage";
+import WritingInterviewPage from "./Components/WritingInterview/WritingInterviewPage";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
       ></Route>
       <Route path="/fillwords" element={<FillWordsPage />}></Route>
       <Route path="/interactive" element={<InteractiveReadingPage />}></Route>
+      <Route
+        path="/writinginterview"
+        element={<WritingInterviewPage />}
+      ></Route>
     </Routes>
   );
 }

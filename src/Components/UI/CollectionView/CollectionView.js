@@ -23,6 +23,8 @@ const CollectionView = () => {
       navigate(`/fillwords?id=${item}`);
     } else if (type === "interactive") {
       navigate(`/interactive?id=${item}`);
+    } else if (type === "writinginterview") {
+      navigate(`/writinginterview?id=${item}`);
     }
   };
 
