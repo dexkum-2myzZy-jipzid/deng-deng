@@ -17,20 +17,23 @@
 .left {
   flex: 1;
   padding: 20px;
+  margin-top: 20px;
   background-color: #f7f7f7;
   text-align: start;
 }
 
 .center {
+  flex: 1;
   margin-left: 20px;
-  flex: 0.5;
-  text-align: start;
   display: grid;
+  text-align: start;
+  justify-content: start;
+  row-gap: 1em;
 }
 
 .right {
   margin-left: 20px;
-  flex: 0.5;
+  flex: 1;
   text-align: start;
   display: grid;
 }
@@ -38,12 +41,24 @@
 /* right part */
 .strong {
   background-color: #d7d7d7;
-  border-radius: 2px;
-  border: 1px solid #8a8a8a;
-  width: 120px;
+  border-radius: 10px;
+  /* border: 1px solid #8a8a8a; */
+  width: 20px;
   height: 20px;
-  margin-right: 10px;
   display: inline-block;
+  text-align: center;
+}
+
+.strongText {
+  background-color: #d7d7d7;
+  border-radius: 6px;
+  /* border: 1px solid #8a8a8a; */
+  width: 100px;
+  height: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  display: inline-block;
+  text-align: center;
 }
 
 .span {
@@ -54,7 +69,7 @@
 
 /* center part */
 .select {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   width: 200px;
   height: 30px;
   min-height: 30px;
@@ -108,8 +123,28 @@
   background-color: #d7d7d7;
   border-radius: 10px;
   width: auto;
-  height: 80px;
   padding: 10px;
+}
+
+.label {
+  margin-top: 20px;
+  padding: 6px;
+  align-items: center;
+  display: inline-block;
+}
+
+.selectLabel {
+  margin-top: 20px;
+  padding: 6px;
+  align-items: center;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.q2right {
+  flex: 1;
+  text-align: start;
+  margin-left: 20px;
 }
 
 /* q3 */

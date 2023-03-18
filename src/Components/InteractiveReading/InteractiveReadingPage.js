@@ -19,8 +19,6 @@ const InteractiveReadingPage = () => {
     id +
     ".json");
   const question = data.data;
-  const [q1Result, setQ1Result] = useState([]);
-  const q1Answer = question.q1.answer;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,6 +34,17 @@ const InteractiveReadingPage = () => {
 
   const progressWidth = (1.0 - timer / seconds) * 100;
 
+  const onClickNextStepHandler = () => {
+    setPageIndex((pre) => pre + 1);
+    if (pageIndex === 5) {
+      setShowAnswer(true);
+    }
+  };
+
+  // q1 content
+  const [q1Result, setQ1Result] = useState([]);
+  const q1Answer = question.q1.answer;
+
   const onSelectChangeHandler = (event, index) => {
     setQ1Result((pre) => {
       pre[index] = event.target.value;
@@ -45,34 +54,48 @@ const InteractiveReadingPage = () => {
 
   var indexInLeft = 0;
 
-  const onClickNextStepHandler = () => {
-    setPageIndex((pre) => pre + 1);
-    if (pageIndex === 5) {
-      setShowAnswer(true);
-    }
-  };
-
-  // q1 content
   const content1 = (
     <div className={styles.content}>
       <div className={styles.left}>
         {question.q1.content.split(" ").map((e, index) => {
           if (e.includes("_")) {
             indexInLeft += 1;
-            const indexStr = `${indexInLeft}.`;
+            const indexStr = `${indexInLeft}`;
             const str =
-              indexStr +
-              (q1Result[indexInLeft - 1] === undefined
+              q1Result[indexInLeft - 1] === undefined
                 ? ""
-                : " " + q1Result[indexInLeft - 1]);
+                : q1Result[indexInLeft - 1];
             const count = e.match(new RegExp("_", "g")).length;
             const suffix = e.length > count ? e.substring(count, e.length) : "";
+            const correct =
+              str.localeCompare(question.q1.answer[indexInLeft - 1]) === 0;
             return (
               <Fragment>
-                <strong key={index} className={styles.strong}>
-                  {str}
+                <strong key={indexInLeft} className={styles.strong}>
+                  {indexStr}
                 </strong>
-                <span key={indexInLeft} className={styles.span}>
+                {(str.length > 1 || showAnswer) && (
+                  <strong
+                    key={-indexInLeft}
+                    className={classNames(styles.strongText, {
+                      [styles.red]: showAnswer && !correct,
+                      [styles.green]: showAnswer && correct,
+                    })}
+                  >
+                    {str}
+                  </strong>
+                )}
+                {showAnswer && !correct && (
+                  <strong
+                    key={indexInLeft + 20}
+                    className={classNames(styles.strongText, {
+                      [styles.green]: true,
+                    })}
+                  >
+                    {question.q1.answer[indexInLeft - 1]}
+                  </strong>
+                )}
+                <span key={indexInLeft + 40} className={styles.span}>
                   {suffix + " "}
                 </span>
               </Fragment>
@@ -86,7 +109,7 @@ const InteractiveReadingPage = () => {
           }
         })}
       </div>
-      <div className={styles.center} style={{ flex: showAnswer ? 0.5 : 1 }}>
+      <div className={styles.center}>
         <p>请选择最佳选项填空</p>
         {question.q1.options.map((option, index) => (
           <select
@@ -102,24 +125,17 @@ const InteractiveReadingPage = () => {
                 : false,
             })}
             onInput={(event) => onSelectChangeHandler(event, index)}
+            value={q1Result[index] !== undefined && q1Result[index]}
           >
-            <option value="">{(index + 1).toString()}.</option>
+            <option key={index} value="">
+              {(index + 1).toString()}.
+            </option>
             {option.map((e, key) => (
               <option key={key}>{e}</option>
             ))}
           </select>
         ))}
       </div>
-      {showAnswer && (
-        <div className={styles.right}>
-          <p>正确答案</p>
-          {q1Answer.map((e) => (
-            <font size="+2" className={styles.answer}>
-              {e}
-            </font>
-          ))}
-        </div>
-      )}
     </div>
   );
 
@@ -132,29 +148,45 @@ const InteractiveReadingPage = () => {
     setMiddle(e["sentence"]);
   };
 
-  const onSubmitHandle = () => {
-    setShowAnswer((pre) => !pre);
-  };
+  // const onSubmitHandle = () => {
+  //   setShowAnswer((pre) => !pre);
+  // };
 
   const content2 = (
     <div className={styles.content}>
       <div className={styles.left}>
         <p>{question.q2.front}</p>
-        <div className={styles.middle}>{middle}</div>
+        <div
+          className={styles.middle}
+          style={{ height: middle.length > 1 ? "auto" : "80px" }}
+        >
+          {q2Result && q2Result["sentence"] !== undefined
+            ? q2Result["sentence"]
+            : ""}
+        </div>
         <p>{question.q2.ending}</p>
       </div>
-      <div className={styles.right} style={{ flex: 1, marginTop: "20px" }}>
+      <div className={styles.q2right}>
+        <p>选句填空</p>
         {question.q2.options.map((e, index) => {
           if (showAnswer) {
             return (
-              <label style={e["correct"] === 1 ? { color: "green" } : {}}>
+              <label
+                className={classNames(styles.selectLabel, {
+                  [styles.red]:
+                    q2Result &&
+                    q2Result["correct"] === 0 &&
+                    e["sentence"].localeCompare(q2Result["sentence"]) === 0,
+                  [styles.green]: e["correct"] === 1,
+                })}
+              >
                 <input
                   key={index}
                   type="radio"
                   name="q2Answer"
                   value=""
                   checked={
-                    e["sentence"] &&
+                    q2Result &&
                     e["sentence"].localeCompare(q2Result["sentence"]) === 0
                       ? true
                       : false
@@ -166,7 +198,7 @@ const InteractiveReadingPage = () => {
             );
           } else {
             return (
-              <label>
+              <label className={styles.label}>
                 <input
                   key={index}
                   type="radio"
@@ -206,13 +238,13 @@ const InteractiveReadingPage = () => {
           <p>{question.q3.content}</p>
         )}
       </div>
-      <div className={styles.right} style={{ flex: 1, marginTop: "20px" }}>
+      <div className={styles.q2right}>
         <p>{question.q3.questionContent}</p>
         <textarea
           readonly="readonly"
           autocomplete="off"
           placeholder="在短文中标出答案"
-          style={{ minHeight: "54px", height: "54px" }}
+          style={{ minHeight: "54px", height: "150px", width: "400px" }}
           value={selectedText}
         ></textarea>
       </div>
@@ -242,13 +274,13 @@ const InteractiveReadingPage = () => {
           <p>{question.q4.content}</p>
         )}
       </div>
-      <div className={styles.right} style={{ flex: 1, marginTop: "20px" }}>
+      <div className={styles.q2right}>
         <p>{question.q4.questionContent}</p>
         <textarea
           readonly="readonly"
           autocomplete="off"
           placeholder="在短文中标出答案"
-          style={{ minHeight: "54px", height: "54px" }}
+          style={{ minHeight: "54px", height: "150px", width: "400px" }}
           value={selectedQ4Text}
         ></textarea>
       </div>
@@ -267,19 +299,27 @@ const InteractiveReadingPage = () => {
       <div className={styles.left}>
         <p>{question.q5.content}</p>
       </div>
-      <div className={styles.right} style={{ flex: 1, marginTop: "20px" }}>
+      <div className={styles.q2right}>
         <p>选出段落大意</p>
         {question.q5.options.map((e, index) => {
           if (showAnswer) {
             return (
-              <label style={e["correct"] === 1 ? { color: "green" } : {}}>
+              <label
+                className={classNames(styles.selectLabel, {
+                  [styles.red]:
+                    q5Result &&
+                    q5Result["correct"] === 0 &&
+                    e["sentence"].localeCompare(q5Result["sentence"]) === 0,
+                  [styles.green]: e["correct"] === 1,
+                })}
+              >
                 <input
                   key={index}
                   type="radio"
                   name="q5Answer"
                   value=""
                   checked={
-                    e["sentence"] &&
+                    q5Result &&
                     e["sentence"].localeCompare(q5Result["sentence"]) === 0
                       ? true
                       : false
@@ -291,7 +331,7 @@ const InteractiveReadingPage = () => {
             );
           } else {
             return (
-              <label>
+              <label className={styles.label}>
                 <input
                   key={index}
                   type="radio"
@@ -320,19 +360,27 @@ const InteractiveReadingPage = () => {
       <div className={styles.left}>
         <p>{question.q6.content}</p>
       </div>
-      <div className={styles.right} style={{ flex: 1, marginTop: "20px" }}>
+      <div className={styles.q2right}>
         <p>请选出这篇短文最适合的标题</p>
         {question.q6.options.map((e, index) => {
           if (showAnswer) {
             return (
-              <label style={e["correct"] === 1 ? { color: "green" } : {}}>
+              <label
+                className={classNames(styles.selectLabel, {
+                  [styles.red]:
+                    q6Result &&
+                    q6Result["correct"] === 0 &&
+                    e["sentence"].localeCompare(q6Result["sentence"]) === 0,
+                  [styles.green]: e["correct"] === 1,
+                })}
+              >
                 <input
                   key={index}
                   type="radio"
                   name="q6Answer"
                   value=""
                   checked={
-                    e["sentence"] &&
+                    q6Result &&
                     e["sentence"].localeCompare(q6Result["sentence"]) === 0
                       ? true
                       : false
@@ -344,7 +392,7 @@ const InteractiveReadingPage = () => {
             );
           } else {
             return (
-              <label>
+              <label className={styles.label}>
                 <input
                   key={index}
                   type="radio"
@@ -374,18 +422,12 @@ const InteractiveReadingPage = () => {
       </div>
       <ProgressBar progressWidth={progressWidth} />
       <p>{"#" + id + "-" + ((pageIndex + 1) % 7)}</p>
-      {pageIndex === 0 && content1}
-      {pageIndex === 1 && content2}
-      {pageIndex === 2 && content3}
-      {pageIndex === 3 && content4}
-      {pageIndex === 4 && content5}
-      {pageIndex === 5 && content6}
-      {pageIndex === 6 && content1}
-      {pageIndex === 7 && content2}
-      {pageIndex === 8 && content3}
-      {pageIndex === 9 && content4}
-      {pageIndex === 10 && content5}
-      {pageIndex === 11 && content6}
+      {(pageIndex === 0 || pageIndex === 6) && content1}
+      {(pageIndex === 1 || pageIndex === 7) && content2}
+      {(pageIndex === 2 || pageIndex === 8) && content3}
+      {(pageIndex === 3 || pageIndex === 9) && content4}
+      {(pageIndex === 4 || pageIndex === 10) && content5}
+      {(pageIndex === 5 || pageIndex === 11) && content6}
       {divider}
       <div
         style={{
