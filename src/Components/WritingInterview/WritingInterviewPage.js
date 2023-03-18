@@ -46,7 +46,7 @@ function WritingInterviewPage() {
         difficulty={question.difficultyName}
         arrayType={"writingInterviewArray"}
         id={id}
-        path={"wirtinginterview"}
+        path={"writinginterview"}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
