@@ -21,6 +21,8 @@ const CollectionView = () => {
       navigate(`/listentodistinguishwords?id=${item}`);
     } else if (type === "fillwords") {
       navigate(`/fillwords?id=${item}`);
+    } else if (type === "interactive") {
+      navigate(`/interactive?id=${item}`);
     }
   };
 

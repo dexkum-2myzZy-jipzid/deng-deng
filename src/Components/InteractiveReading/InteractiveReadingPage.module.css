@@ -1,0 +1,150 @@
+.container {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  /* align-items: center; */
+  padding: 0 20px;
+}
+
+.left {
+  flex: 1;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f7f7f7;
+  text-align: start;
+}
+
+.center {
+  flex: 1;
+  margin-left: 20px;
+  display: grid;
+  text-align: start;
+  justify-content: start;
+  row-gap: 1em;
+}
+
+.right {
+  margin-left: 20px;
+  flex: 1;
+  text-align: start;
+  display: grid;
+}
+
+/* right part */
+.strong {
+  background-color: #d7d7d7;
+  border-radius: 10px;
+  /* border: 1px solid #8a8a8a; */
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+.strongText {
+  background-color: #d7d7d7;
+  border-radius: 6px;
+  /* border: 1px solid #8a8a8a; */
+  width: 100px;
+  height: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  display: inline-block;
+  text-align: center;
+}
+
+.span {
+  display: inline-block;
+  /* padding-top: 10px; */
+  margin: 5px 5px 5px 0;
+}
+
+/* center part */
+.select {
+  /* margin-top: 20px; */
+  width: 200px;
+  height: 30px;
+  min-height: 30px;
+}
+
+/* right part */
+.answer {
+  margin-top: 20px;
+  width: 200px;
+  height: 30px;
+  min-height: 30px;
+  font-weight: bold;
+}
+
+.gray {
+  color: white;
+  background-color: gray;
+}
+
+.red {
+  color: white;
+  background-color: #fc0d1b;
+}
+
+.orange {
+  color: white;
+  background-color: #f8812e;
+}
+
+.green {
+  color: white;
+  background-color: #47b255;
+}
+
+.example {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: fit-content;
+  height: 15px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 1em;
+}
+
+/* q2 */
+.middle {
+  background-color: #d7d7d7;
+  border-radius: 10px;
+  width: auto;
+  padding: 10px;
+}
+
+.label {
+  margin-top: 20px;
+  padding: 6px;
+  align-items: center;
+  display: inline-block;
+}
+
+.selectLabel {
+  margin-top: 20px;
+  padding: 6px;
+  align-items: center;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.q2right {
+  flex: 1;
+  text-align: start;
+  margin-left: 20px;
+}
+
+/* q3 */
