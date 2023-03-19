@@ -11,6 +11,7 @@ import FillWordsPage from "./Components/FillWords/FillWordsPage";
 import InteractiveReadingPage from "./Components/InteractiveReading/InteractiveReadingPage";
 import WritingInterviewPage from "./Components/WritingInterview/WritingInterviewPage";
 import OralInterviewPage from "./Components/OralInterview/OralInterview";
+import DictateSentencePage from "./Components/DictateSentence/OralInterview";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         element={<WritingInterviewPage />}
       ></Route>
       <Route path="/oralinterview" element={<OralInterviewPage />}></Route>
+      <Route path="/dictatesentence" element={<DictateSentencePage />}></Route>
     </Routes>
   );
 }

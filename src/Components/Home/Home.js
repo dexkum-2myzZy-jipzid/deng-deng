@@ -47,6 +47,9 @@ const Home = () => {
     } else if (type === "oralinterview") {
       const myArrayString = oralInterviewArray.join(",");
       navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "dictatesentence") {
+      const myArrayString = dictateSentencesArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
     }
   };
 
@@ -60,6 +63,7 @@ const Home = () => {
     { type: "interactive", title: "互动阅读" },
     { type: "writinginterview", title: "写作面试" },
     { type: "oralinterview", title: "口语面试" },
+    { type: "dictatesentence", title: "听写句子" },
   ];
 
   return (
