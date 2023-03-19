@@ -139,27 +139,30 @@ const ListenToDistinguishWordsPage = () => {
         <ul>
           {words.map((e, index) => {
             return (
-              <li key={index} className={styles.card}>
-                <h1>{e["word"]}</h1>
-                <div>
-                  <font size="+1">美[{e["usPhonetic"]}]</font>
-                  <audio controls src={e["usSpeech"]}>
-                    <a href={e["usSpeech"]}>Download audio</a>
-                  </audio>
-                  <font size="+1">英[{e["ukPhonetic"]}]</font>
-                  <audio controls src={e["ukSpeech"]}>
-                    <a href={e["ukSpeech"]}>Download audio</a>
-                  </audio>
-                </div>
-                <ul>
-                  {e["explains"]
-                    .slice(1, -1)
-                    .split(",")
-                    .map((val, index) => {
-                      return <li key={index}>{val.slice(1, -1)}</li>;
-                    })}
-                </ul>
-              </li>
+              e["word"] !== undefined && (
+                <li key={index} className={styles.card}>
+                  <h1>{e["word"]}</h1>
+                  <div>
+                    <font size="+1">美[{e["usPhonetic"]}]</font>
+                    <audio controls src={e["usSpeech"]}>
+                      <a href={e["usSpeech"]}>Download audio</a>
+                    </audio>
+                    <font size="+1">英[{e["ukPhonetic"]}]</font>
+                    <audio controls src={e["ukSpeech"]}>
+                      <a href={e["ukSpeech"]}>Download audio</a>
+                    </audio>
+                  </div>
+                  <ul>
+                    {e["explains"] !== null &&
+                      e["explains"]
+                        .slice(1, -1)
+                        .split(",")
+                        .map((val, index) => {
+                          return <li key={index}>{val.slice(1, -1)}</li>;
+                        })}
+                  </ul>
+                </li>
+              )
             );
           })}
         </ul>
