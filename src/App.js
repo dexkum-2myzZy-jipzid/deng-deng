@@ -10,6 +10,7 @@ import ListenToDistinguishWordsPage from "./Components/ListenToDistinguishWords/
 import FillWordsPage from "./Components/FillWords/FillWordsPage";
 import InteractiveReadingPage from "./Components/InteractiveReading/InteractiveReadingPage";
 import WritingInterviewPage from "./Components/WritingInterview/WritingInterviewPage";
+import OralInterviewPage from "./Components/OralInterview/OralInterview";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         path="/writinginterview"
         element={<WritingInterviewPage />}
       ></Route>
+      <Route path="/oralinterview" element={<OralInterviewPage />}></Route>
     </Routes>
   );
 }

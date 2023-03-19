@@ -12,6 +12,10 @@ const Home = () => {
     fillWordsArray,
     interactiveArray,
     writingInterviewArray,
+    oralInterviewArray,
+    dictateSentencesArray,
+    lectureArray,
+    shortEssayArray,
   } = Questions();
   const navigate = useNavigate();
 
@@ -40,6 +44,9 @@ const Home = () => {
     } else if (type === "writinginterview") {
       const myArrayString = writingInterviewArray.join(",");
       navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "oralinterview") {
+      const myArrayString = oralInterviewArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
     }
   };
 
@@ -52,6 +59,7 @@ const Home = () => {
     { type: "fillwords", title: "单词填空" },
     { type: "interactive", title: "互动阅读" },
     { type: "writinginterview", title: "写作面试" },
+    { type: "oralinterview", title: "口语面试" },
   ];
 
   return (

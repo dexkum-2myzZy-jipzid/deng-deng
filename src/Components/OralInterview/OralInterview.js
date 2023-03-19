@@ -3,17 +3,17 @@ import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
 import secondsToMmSs from "../Utils";
-import styles from "./WritingInterviewPage.module.css";
+import styles from "./OralInterview.module.css";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
+import { TbDeviceComputerCamera } from "react-icons/tb";
 
-function WritingInterviewPage() {
-  const seconds = 5 * 60;
+function OralInterviewPage() {
+  const seconds = 3 * 60;
   const [timer, setTimer] = useState(seconds);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const [wordsCount, setWordsCount] = useState(0);
 
-  const data = require("../../QuestionCollection/面试/写作面试/" +
+  const data = require("../../QuestionCollection/面试/口语面试/" +
     id +
     ".json");
   const question = data.data;
@@ -32,21 +32,13 @@ function WritingInterviewPage() {
 
   const progressWidth = (1.0 - timer / seconds) * 100;
 
-  const onInputHandler = (event) => {
-    setWordsCount(() => {
-      const str = event.target.value;
-      const arr = str.split(" ");
-      return arr.filter((word) => word !== "").length;
-    });
-  };
-
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
         difficulty={question.difficultyName}
-        arrayType={"writingInterviewArray"}
+        arrayType={"oralInterviewArray"}
         id={id}
-        path={"writinginterview"}
+        path={"oralinterview"}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
@@ -58,26 +50,9 @@ function WritingInterviewPage() {
           display: "flex",
         }}
       >
-        <div
-          style={{
-            flex: 1,
-            alignItem: "center",
-            textAlign: "left",
-            marginRight: "20px",
-          }}
-        >
-          <p>{question.content}</p>
-        </div>
+        <div className={styles.right}>{question.content}</div>
         <div style={{ flex: 1, textAlign: "left" }}>
-          <textarea
-            onInput={(e) => onInputHandler(e)}
-            // readonly="readonly"
-            autocomplete="off"
-            placeholder="您的答案"
-            style={{ minHeight: "54px", height: "200px", width: "450px" }}
-            // value={}
-          ></textarea>
-          <p>{`字数：${wordsCount}`}</p>
+          <TbDeviceComputerCamera size={300} style={{ color: "lightgrey" }} />
         </div>
       </div>
       <ShowAnswer answer={question.answer}></ShowAnswer>
@@ -85,4 +60,4 @@ function WritingInterviewPage() {
   );
 }
 
-export default WritingInterviewPage;
+export default OralInterviewPage;
