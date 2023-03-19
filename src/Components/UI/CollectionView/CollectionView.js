@@ -25,6 +25,8 @@ const CollectionView = () => {
       navigate(`/interactive?id=${item}`);
     } else if (type === "writinginterview") {
       navigate(`/writinginterview?id=${item}`);
+    } else if (type === "oralinterview") {
+      navigate(`/oralinterview?id=${item}`);
     }
   };
 
