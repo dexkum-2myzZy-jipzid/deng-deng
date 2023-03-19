@@ -11,7 +11,7 @@ import FillWordsPage from "./Components/FillWords/FillWordsPage";
 import InteractiveReadingPage from "./Components/InteractiveReading/InteractiveReadingPage";
 import WritingInterviewPage from "./Components/WritingInterview/WritingInterviewPage";
 import OralInterviewPage from "./Components/OralInterview/OralInterview";
-import DictateSentencePage from "./Components/DictateSentence/OralInterview";
+import DictateSentencePage from "./Components/DictateSentence/DictateSentencePage";
 
 function App() {
   return (
