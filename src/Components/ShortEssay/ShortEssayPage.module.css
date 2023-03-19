@@ -1,0 +1,22 @@
+.container {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.timer {
+  color: red;
+}
+
+.right {
+  flex: 1;
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
+  vertical-align: middle;
+  padding: 50px 20px;
+}

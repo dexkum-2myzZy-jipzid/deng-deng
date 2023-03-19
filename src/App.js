@@ -11,7 +11,9 @@ import FillWordsPage from "./Components/FillWords/FillWordsPage";
 import InteractiveReadingPage from "./Components/InteractiveReading/InteractiveReadingPage";
 import WritingInterviewPage from "./Components/WritingInterview/WritingInterviewPage";
 import OralInterviewPage from "./Components/OralInterview/OralInterview";
-import DictateSentencePage from "./Components/DictateSentence/OralInterview";
+import DictateSentencePage from "./Components/DictateSentence/DictateSentencePage";
+import LecturePage from "./Components/Lecture/LecturePage";
+import ShortEssayPage from "./Components/ShortEssay/ShortEssayPage";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
       ></Route>
       <Route path="/oralinterview" element={<OralInterviewPage />}></Route>
       <Route path="/dictatesentence" element={<DictateSentencePage />}></Route>
+      <Route path="/lecture" element={<LecturePage />}></Route>
+      <Route path="/shortessay" element={<ShortEssayPage />}></Route>
     </Routes>
   );
 }

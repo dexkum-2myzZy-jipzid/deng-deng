@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
 import secondsToMmSs from "../Utils";
-import styles from "./OralInterview.module.css";
+import styles from "./DictateSentencePage.module.css";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 import { MdVolumeUp } from "react-icons/md";
 
