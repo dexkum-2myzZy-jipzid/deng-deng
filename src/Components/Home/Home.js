@@ -11,6 +11,11 @@ const Home = () => {
     listentodistinguishwordsArray,
     fillWordsArray,
     interactiveArray,
+    writingInterviewArray,
+    oralInterviewArray,
+    dictateSentencesArray,
+    lectureArray,
+    shortEssayArray,
   } = Questions();
   const navigate = useNavigate();
 
@@ -36,6 +41,21 @@ const Home = () => {
     } else if (type === "interactive") {
       const myArrayString = interactiveArray.join(",");
       navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "writinginterview") {
+      const myArrayString = writingInterviewArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "oralinterview") {
+      const myArrayString = oralInterviewArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "dictatesentence") {
+      const myArrayString = dictateSentencesArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "lecture") {
+      const myArrayString = lectureArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "shortessay") {
+      const myArrayString = shortEssayArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
     }
   };
 
@@ -47,6 +67,11 @@ const Home = () => {
     { type: "listentodistinguishwords", title: "听音辩词" },
     { type: "fillwords", title: "单词填空" },
     { type: "interactive", title: "互动阅读" },
+    { type: "writinginterview", title: "写作面试" },
+    { type: "oralinterview", title: "口语面试" },
+    { type: "dictatesentence", title: "听写句子" },
+    { type: "lecture", title: "听题演讲" },
+    { type: "shortessay", title: "小作文" },
   ];
 
   return (

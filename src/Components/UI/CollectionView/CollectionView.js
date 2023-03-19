@@ -23,6 +23,16 @@ const CollectionView = () => {
       navigate(`/fillwords?id=${item}`);
     } else if (type === "interactive") {
       navigate(`/interactive?id=${item}`);
+    } else if (type === "writinginterview") {
+      navigate(`/writinginterview?id=${item}`);
+    } else if (type === "oralinterview") {
+      navigate(`/oralinterview?id=${item}`);
+    } else if (type === "dictatesentence") {
+      navigate(`/dictatesentence?id=${item}`);
+    } else if (type === "lecture") {
+      navigate(`/lecture?id=${item}`);
+    } else if (type === "shortessay") {
+      navigate(`/shortessay?id=${item}`);
     }
   };
 
