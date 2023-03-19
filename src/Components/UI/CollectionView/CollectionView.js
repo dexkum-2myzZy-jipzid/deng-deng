@@ -31,6 +31,8 @@ const CollectionView = () => {
       navigate(`/dictatesentence?id=${item}`);
     } else if (type === "lecture") {
       navigate(`/lecture?id=${item}`);
+    } else if (type === "shortessay") {
+      navigate(`/shortessay?id=${item}`);
     }
   };
 

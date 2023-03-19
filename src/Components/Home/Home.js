@@ -53,6 +53,9 @@ const Home = () => {
     } else if (type === "lecture") {
       const myArrayString = lectureArray.join(",");
       navigate(`/collectionview?type=${type}&array=${myArrayString}`);
+    } else if (type === "shortessay") {
+      const myArrayString = shortEssayArray.join(",");
+      navigate(`/collectionview?type=${type}&array=${myArrayString}`);
     }
   };
 
@@ -68,6 +71,7 @@ const Home = () => {
     { type: "oralinterview", title: "口语面试" },
     { type: "dictatesentence", title: "听写句子" },
     { type: "lecture", title: "听题演讲" },
+    { type: "shortessay", title: "小作文" },
   ];
 
   return (

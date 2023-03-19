@@ -13,6 +13,7 @@ import WritingInterviewPage from "./Components/WritingInterview/WritingInterview
 import OralInterviewPage from "./Components/OralInterview/OralInterview";
 import DictateSentencePage from "./Components/DictateSentence/DictateSentencePage";
 import LecturePage from "./Components/Lecture/LecturePage";
+import ShortEssayPage from "./Components/ShortEssay/ShortEssayPage";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path="/oralinterview" element={<OralInterviewPage />}></Route>
       <Route path="/dictatesentence" element={<DictateSentencePage />}></Route>
       <Route path="/lecture" element={<LecturePage />}></Route>
+      <Route path="/shortessay" element={<ShortEssayPage />}></Route>
     </Routes>
   );
 }
