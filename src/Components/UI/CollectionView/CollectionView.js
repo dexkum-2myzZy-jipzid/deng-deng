@@ -1,11 +1,10 @@
 import React from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./CollectionView.css";
 
-const CollectionView = () => {
-  const [searchParams] = useSearchParams();
-  const type = searchParams.get("type");
-  const array = searchParams.get("array").split(",");
+const CollectionView = (props) => {
+  const type = props.type;
+  const array = props.array.split(",");
   const navigate = useNavigate();
 
   const onClickHandler = (item) => {
