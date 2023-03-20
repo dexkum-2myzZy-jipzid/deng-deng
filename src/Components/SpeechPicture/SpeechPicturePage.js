@@ -8,6 +8,7 @@ import styles from "./SpeechPicturePage.module.css";
 const SpeechPicturePage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [prepareTimer, setPrepareTimer] = useState(20);
   const [timer, setTimer] = useState(90);
 
@@ -47,8 +48,8 @@ const SpeechPicturePage = () => {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"pictureArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"speechpicturepage"}
       />

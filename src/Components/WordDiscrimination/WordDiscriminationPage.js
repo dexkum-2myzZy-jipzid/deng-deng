@@ -10,6 +10,7 @@ function WordDiscriminationPage() {
   const [timer, setTimer] = useState(60);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
 
   const data = require("../../QuestionCollection/词汇/单词辨析/" +
     id +
@@ -78,8 +79,8 @@ function WordDiscriminationPage() {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"wordDiscriminationArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"worddiscrimination"}
       />

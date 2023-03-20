@@ -11,6 +11,7 @@ const InteractiveReadingPage = () => {
   const seconds = 420;
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [timer, setTimer] = useState(seconds);
   const [showAnswer, setShowAnswer] = useState(false);
   const [pageIndex, setPageIndex] = useState(0);
@@ -222,9 +223,18 @@ const InteractiveReadingPage = () => {
     setSelectedText(selection);
   };
 
+  const handleTouchEnd = () => {
+    const selection = window.getSelection().toString();
+    setSelectedText(selection);
+  };
+
   const content3 = (
     <div className={styles.content}>
-      <div className={styles.left} onMouseUp={handleMouseUp}>
+      <div
+        className={styles.left}
+        onMouseUp={handleMouseUp}
+        onTouchEnd={handleTouchEnd}
+      >
         {showAnswer ? (
           <p
             dangerouslySetInnerHTML={{
@@ -244,7 +254,12 @@ const InteractiveReadingPage = () => {
           readonly="readonly"
           autocomplete="off"
           placeholder="在短文中标出答案"
-          style={{ minHeight: "54px", height: "150px", width: "400px" }}
+          style={{
+            minHeight: "54px",
+            height: "150px",
+            width: "400px",
+            fontSize: "16px",
+          }}
           value={selectedText}
         ></textarea>
       </div>
@@ -257,10 +272,18 @@ const InteractiveReadingPage = () => {
     const selection = window.getSelection().toString();
     setSelectedQ4Text(selection);
   };
+  const handleQ4TouchEnd = () => {
+    const selection = window.getSelection().toString();
+    setSelectedText(selection);
+  };
 
   const content4 = (
     <div className={styles.content}>
-      <div className={styles.left} onMouseUp={handleQ4MouseUp}>
+      <div
+        className={styles.left}
+        onMouseUp={handleQ4MouseUp}
+        onTouchEnd={handleQ4TouchEnd}
+      >
         {showAnswer ? (
           <p
             dangerouslySetInnerHTML={{
@@ -280,7 +303,12 @@ const InteractiveReadingPage = () => {
           readonly="readonly"
           autocomplete="off"
           placeholder="在短文中标出答案"
-          style={{ minHeight: "54px", height: "150px", width: "400px" }}
+          style={{
+            minHeight: "54px",
+            height: "150px",
+            width: "400px",
+            fontSize: "16px",
+          }}
           value={selectedQ4Text}
         ></textarea>
       </div>
@@ -412,8 +440,8 @@ const InteractiveReadingPage = () => {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"interactiveArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"interactive"}
       />

@@ -9,6 +9,7 @@ import styles from "./FillWordsPage.module.css";
 const FillWordsPage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [timer, setTimer] = useState(180);
   const [showAnswer, setShowAnswer] = useState(false);
 
@@ -40,8 +41,8 @@ const FillWordsPage = () => {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"fillWordsArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"fillwords"}
       />

@@ -6,3 +6,21 @@
   align-items: flex-start;
   text-align: center;
 }
+
+/* header */
+.header {
+  height: 50;
+  align-items: center;
+  text-align: left;
+  padding: 0px 20px;
+  display: flex;
+}
+
+.button {
+  margin-right: 20px;
+  border-radius: 10px;
+  background-color: #d7d7d7;
+  color: white;
+  width: auto;
+  padding: 5px 15px;
+}

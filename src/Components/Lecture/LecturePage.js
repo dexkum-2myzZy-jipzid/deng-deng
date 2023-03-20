@@ -12,6 +12,7 @@ function LecturePage() {
   const [timer, setTimer] = useState(seconds);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [showReferenceText, setShowReferenceText] = useState(false);
 
   const data = require("../../QuestionCollection/口语/听题演讲/" +
@@ -45,8 +46,8 @@ function LecturePage() {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"lectureArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"lecture"}
       />

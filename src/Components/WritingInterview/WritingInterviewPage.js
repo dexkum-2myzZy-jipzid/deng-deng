@@ -11,6 +11,7 @@ function WritingInterviewPage() {
   const [timer, setTimer] = useState(seconds);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [wordsCount, setWordsCount] = useState(0);
 
   const data = require("../../QuestionCollection/面试/写作面试/" +
@@ -43,8 +44,8 @@ function WritingInterviewPage() {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"writingInterviewArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"writinginterview"}
       />
@@ -74,7 +75,12 @@ function WritingInterviewPage() {
             // readonly="readonly"
             autocomplete="off"
             placeholder="您的答案"
-            style={{ minHeight: "54px", height: "200px", width: "450px" }}
+            style={{
+              minHeight: "54px",
+              height: "200px",
+              width: "450px",
+              fontSize: "16px",
+            }}
             // value={}
           ></textarea>
           <p>{`字数：${wordsCount}`}</p>

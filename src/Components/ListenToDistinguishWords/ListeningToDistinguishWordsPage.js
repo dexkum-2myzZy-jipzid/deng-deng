@@ -12,6 +12,7 @@ import classNames from "classnames";
 const ListenToDistinguishWordsPage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [timer, setTimer] = useState(90);
   const [selectedArray, setSelectedArray] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -83,8 +84,8 @@ const ListenToDistinguishWordsPage = () => {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"listentodistinguishwordsArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"listentodistinguishwords"}
       />

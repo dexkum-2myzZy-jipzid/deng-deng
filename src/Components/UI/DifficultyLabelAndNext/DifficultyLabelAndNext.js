@@ -1,5 +1,5 @@
 import React from "react";
-import Questions from "../../Home/Questions";
+import Difficulty from "../../Home/Difficulty";
 
 function DifficultyLabelAndNext(props) {
   const container = {
@@ -26,44 +26,44 @@ function DifficultyLabelAndNext(props) {
     height: "40px",
   };
 
-  const onClickNextHandler = (arrayType, id, path) => {
-    const array = Questions()[arrayType];
+  const onClickNextHandler = (id, path) => {
+    const array = Difficulty()[path][props.difficulty];
     const index = array.indexOf(parseInt(id));
     if (index < array.length - 1) {
       const item = array[index + 1];
-      window.location.replace(`/${path}?id=${item}`);
+      window.location.replace(
+        `/${path}?id=${item}&difficulty=${props.difficulty}`
+      );
     }
   };
 
-  const onClickPreviousHandler = (arrayType, id, path) => {
-    const array = Questions()[arrayType];
+  const onClickPreviousHandler = (id, path) => {
+    const array = Difficulty()[path][props.difficulty];
     const index = array.indexOf(parseInt(id));
     if (index > 0) {
       const item = array[index - 1];
-      window.location.replace(`/${path}?id=${item}`);
+      window.location.replace(
+        `/${path}?id=${item}&difficulty=${props.difficulty}`
+      );
     }
   };
 
   return (
     <div style={container}>
-      {props.difficulty && <div style={label}>{props.difficulty}</div>}
+      {props.difficultyName && <div style={label}>{props.difficultyName}</div>}
       <font size="+2" style={{ fontWeight: "bold" }}>
         题号：{props.id}
       </font>
       <div>
         <button
           style={button}
-          onClick={() =>
-            onClickPreviousHandler(props.arrayType, props.id, props.path)
-          }
+          onClick={() => onClickPreviousHandler(props.id, props.path)}
         >
           {"< Previous"}
         </button>
         <button
           style={button}
-          onClick={() =>
-            onClickNextHandler(props.arrayType, props.id, props.path)
-          }
+          onClick={() => onClickNextHandler(props.id, props.path)}
         >
           {"Next >"}
         </button>
