@@ -96,8 +96,11 @@ const ListenToDistinguishWordsPage = () => {
       <div className={styles.collection}>
         {array.map((e, index) => (
           <div className={styles.collectionItem}>
-            <div className={styles.speaker}>
-              <MdVolumeUp onClick={() => onClickSpeakerHander(e["voice"])} />
+            <div
+              className={styles.speaker}
+              onClick={() => onClickSpeakerHander(e["voice"])}
+            >
+              <MdVolumeUp />
             </div>
             <div className={itemClassName(e, index)}>
               {selectedArray.includes(index) ? (
