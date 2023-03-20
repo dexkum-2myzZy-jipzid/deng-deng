@@ -1,5 +1,6 @@
 import { Menu } from "antd";
 import Questions from "./Questions";
+import Difficulty from "./Difficulty";
 import styles from "./Home.module.css";
 import CollectionView from "../UI/CollectionView/CollectionView";
 import { useState } from "react";
@@ -122,12 +123,13 @@ const Home = () => {
   ];
 
   const [item, setItem] = useState(array[0]);
+  const [difficulty, setDifficulty] = useState(0);
 
   function onClickMenuItem(e) {
-    console.log(e);
     const title = e.keyPath[0];
     const item = array.filter((e) => e["title"].localeCompare(title) === 0);
     setItem(item[0]);
+    setDifficulty(0);
   }
 
   const { SubMenu } = Menu;
@@ -140,6 +142,46 @@ const Home = () => {
     <EditOutlined />,
     <TeamOutlined />,
   ];
+
+  const onClickAllHander = () => {
+    const list = Difficulty()[item["type"]][0];
+    setItem((pre) => {
+      return { ...pre, array: list.join(",") };
+    });
+    setDifficulty(0);
+  };
+
+  const onClickHardHander = () => {
+    const list = Difficulty()[item["type"]][3];
+    setItem((pre) => {
+      return { ...pre, array: list.join(",") };
+    });
+    setDifficulty(3);
+  };
+
+  const onClickMiddleHander = () => {
+    const list = Difficulty()[item["type"]][2];
+    setItem((pre) => {
+      return { ...pre, array: list.join(",") };
+    });
+    setDifficulty(2);
+  };
+
+  const onClickEasyHander = () => {
+    const list = Difficulty()[item["type"]][1];
+    setItem((pre) => {
+      return { ...pre, array: list.join(",") };
+    });
+    setDifficulty(1);
+  };
+
+  const onClickUndefinedHander = () => {
+    const list = Difficulty()[item["type"]][4];
+    setItem((pre) => {
+      return { ...pre, array: list.join(",") };
+    });
+    setDifficulty(4);
+  };
 
   return (
     <div className={styles.container}>
@@ -162,7 +204,46 @@ const Home = () => {
           );
         })}
       </Menu>
-      <CollectionView type={item["type"]} array={item["array"]} />
+      <div>
+        <div className={styles.header}>
+          <div
+            className={styles.button}
+            style={{ color: "black" }}
+            onClick={onClickAllHander}
+          >
+            全部
+          </div>
+          <div
+            className={styles.button}
+            style={{ backgroundColor: "#fc0d1b" }}
+            onClick={onClickHardHander}
+          >
+            难（120以上）
+          </div>
+          <div
+            className={styles.button}
+            style={{ backgroundColor: "#f8812e" }}
+            onClick={onClickMiddleHander}
+          >
+            一般（105~115）
+          </div>
+          <div
+            className={styles.button}
+            style={{ backgroundColor: "#47b255" }}
+            onClick={onClickEasyHander}
+          >
+            简单（100以下）
+          </div>
+          <div className={styles.button} onClick={onClickUndefinedHander}>
+            难度不明确
+          </div>
+        </div>
+        <CollectionView
+          type={item["type"]}
+          array={item["array"]}
+          difficulty={difficulty}
+        />
+      </div>
     </div>
   );
 };

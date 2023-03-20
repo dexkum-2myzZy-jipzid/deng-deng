@@ -6,6 +6,7 @@ import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 function SpeechTopicPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [timer, setTimer] = useState(30);
 
   const data = require("../../QuestionCollection/口语/看题演讲/" +
@@ -30,8 +31,8 @@ function SpeechTopicPage() {
   return (
     <div style={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"topicArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"speechtopicpage"}
       />

@@ -11,6 +11,7 @@ const InteractiveReadingPage = () => {
   const seconds = 420;
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [timer, setTimer] = useState(seconds);
   const [showAnswer, setShowAnswer] = useState(false);
   const [pageIndex, setPageIndex] = useState(0);
@@ -439,8 +440,8 @@ const InteractiveReadingPage = () => {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"interactiveArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"interactive"}
       />

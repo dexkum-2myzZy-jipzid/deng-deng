@@ -12,6 +12,7 @@ function DictateSentencePage() {
   const [timer, setTimer] = useState(seconds);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [wordsCount, setWordsCount] = useState(0);
 
   const data = require("../../QuestionCollection/听力/听写句子/" +
@@ -49,8 +50,8 @@ function DictateSentencePage() {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"dictateSentencesArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"dictatesentence"}
       />

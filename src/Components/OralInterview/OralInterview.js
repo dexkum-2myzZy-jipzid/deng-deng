@@ -12,6 +12,7 @@ function OralInterviewPage() {
   const [timer, setTimer] = useState(seconds);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
 
   const data = require("../../QuestionCollection/面试/口语面试/" +
     id +
@@ -35,8 +36,8 @@ function OralInterviewPage() {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"oralInterviewArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"oralinterview"}
       />

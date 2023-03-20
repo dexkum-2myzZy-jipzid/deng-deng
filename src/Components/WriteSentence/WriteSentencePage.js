@@ -11,6 +11,7 @@ const WriteSentencePage = () => {
   const [inputText, setInputText] = useState("");
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
 
   const data = require("../../QuestionCollection/写作/看图写句/" +
     id +
@@ -34,8 +35,8 @@ const WriteSentencePage = () => {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"sentenceArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"writesentence"}
       />

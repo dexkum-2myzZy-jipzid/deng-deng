@@ -11,6 +11,7 @@ function ShortEssayPage() {
   const [timer, setTimer] = useState(seconds);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const difficulty = searchParams.get("difficulty");
   const [wordsCount, setWordsCount] = useState(0);
 
   const data = require("../../QuestionCollection/写作/小作文/" + id + ".json");
@@ -41,8 +42,8 @@ function ShortEssayPage() {
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
-        difficulty={question.difficultyName}
-        arrayType={"shortEssayArray"}
+        difficultyName={question.difficultyName}
+        difficulty={difficulty}
         id={id}
         path={"shortessay"}
       />
