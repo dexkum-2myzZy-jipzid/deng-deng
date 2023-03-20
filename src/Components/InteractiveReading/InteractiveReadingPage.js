@@ -253,7 +253,12 @@ const InteractiveReadingPage = () => {
           readonly="readonly"
           autocomplete="off"
           placeholder="在短文中标出答案"
-          style={{ minHeight: "54px", height: "150px", width: "400px" }}
+          style={{
+            minHeight: "54px",
+            height: "150px",
+            width: "400px",
+            fontSize: "16px",
+          }}
           value={selectedText}
         ></textarea>
       </div>
@@ -297,7 +302,12 @@ const InteractiveReadingPage = () => {
           readonly="readonly"
           autocomplete="off"
           placeholder="在短文中标出答案"
-          style={{ minHeight: "54px", height: "150px", width: "400px" }}
+          style={{
+            minHeight: "54px",
+            height: "150px",
+            width: "400px",
+            fontSize: "16px",
+          }}
           value={selectedQ4Text}
         ></textarea>
       </div>

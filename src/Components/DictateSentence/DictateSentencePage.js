@@ -76,7 +76,12 @@ function DictateSentencePage() {
             // readonly="readonly"
             autocomplete="off"
             placeholder="您的回复"
-            style={{ minHeight: "54px", height: "200px", width: "450px" }}
+            style={{
+              minHeight: "54px",
+              height: "200px",
+              width: "450px",
+              fontSize: "16px",
+            }}
             // value={}
           ></textarea>
           <p>{`字数：${wordsCount}`}</p>

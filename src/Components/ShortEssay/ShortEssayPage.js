@@ -63,7 +63,12 @@ function ShortEssayPage() {
             // readonly="readonly"
             autocomplete="off"
             placeholder="您的答案"
-            style={{ minHeight: "54px", height: "200px", width: "450px" }}
+            style={{
+              minHeight: "54px",
+              height: "200px",
+              width: "450px",
+              fontSize: "16px",
+            }}
             // value={}
           ></textarea>
           <p>{`字数：${wordsCount}`}</p>

@@ -53,7 +53,7 @@ const WriteSentencePage = () => {
         />
         <div style={{ width: "20px" }}></div>
         <textarea
-          style={{ width: "500px", height: "200px" }}
+          style={{ width: "500px", height: "200px", fontSize: "16px" }}
           placeholder="你的回复"
           type="text"
           value={inputText}
