@@ -222,9 +222,18 @@ const InteractiveReadingPage = () => {
     setSelectedText(selection);
   };
 
+  const handleTouchEnd = () => {
+    const selection = window.getSelection().toString();
+    setSelectedText(selection);
+  };
+
   const content3 = (
     <div className={styles.content}>
-      <div className={styles.left} onMouseUp={handleMouseUp}>
+      <div
+        className={styles.left}
+        onMouseUp={handleMouseUp}
+        onTouchEnd={handleTouchEnd}
+      >
         {showAnswer ? (
           <p
             dangerouslySetInnerHTML={{
@@ -257,10 +266,18 @@ const InteractiveReadingPage = () => {
     const selection = window.getSelection().toString();
     setSelectedQ4Text(selection);
   };
+  const handleQ4TouchEnd = () => {
+    const selection = window.getSelection().toString();
+    setSelectedText(selection);
+  };
 
   const content4 = (
     <div className={styles.content}>
-      <div className={styles.left} onMouseUp={handleQ4MouseUp}>
+      <div
+        className={styles.left}
+        onMouseUp={handleQ4MouseUp}
+        onTouchEnd={handleQ4TouchEnd}
+      >
         {showAnswer ? (
           <p
             dangerouslySetInnerHTML={{
