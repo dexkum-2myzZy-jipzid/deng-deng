@@ -51,27 +51,29 @@ const FillWordsPage = () => {
       </div>
       <ProgressBar progressWidth={progressWidth} />
       <h2>{question.title}</h2>
-      {question.partBlankContent.split(" ").map((e, index) =>
-        e.indexOf("_") !== -1 ? (
-          <InputArray
-            key={index.toString()}
-            word={words.shift()}
-            showAnswer={showAnswer}
-            partBlank={e}
-          />
-        ) : (
-          <span
-            key={index}
-            style={{
-              display: "inline-block",
-              paddingTop: "10px",
-              margin: "10px 10px 10px 0",
-            }}
-          >
-            {e + " "}
-          </span>
-        )
-      )}
+      <div style={{ textAlign: "left" }}>
+        {question.partBlankContent.split(" ").map((e, index) =>
+          e.indexOf("_") !== -1 ? (
+            <InputArray
+              key={index.toString()}
+              word={words.shift()}
+              showAnswer={showAnswer}
+              partBlank={e}
+            />
+          ) : (
+            <span
+              key={index}
+              style={{
+                display: "inline-block",
+                paddingTop: "10px",
+                margin: "10px 10px 10px 0",
+              }}
+            >
+              {e + " "}
+            </span>
+          )
+        )}
+      </div>
       <p></p>
       <button onClick={onSumbitHandler}>Submit</button>
       {showAnswer && <p>{question.answer}</p>}
