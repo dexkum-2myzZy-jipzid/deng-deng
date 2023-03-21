@@ -51,7 +51,7 @@ const SpeechPicturePage = () => {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"speechpicturepage"}
+        path={"speechpicture"}
       />
       <p>准备时间：{secondsToMmSs(prepareTimer)}</p>
       <h4 className={styles.timer} onClick={handleCountdownClick}>

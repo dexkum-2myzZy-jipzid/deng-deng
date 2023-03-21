@@ -34,7 +34,7 @@ function SpeechTopicPage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"speechtopicpage"}
+        path={"speechtopic"}
       />
       <h1 style={styles.title}>看题演讲</h1>
       <div onClick={handleCountdownClick}>

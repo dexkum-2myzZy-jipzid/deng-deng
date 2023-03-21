@@ -20,8 +20,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />}></Route>
       <Route path="/collectionview" element={<CollectionView />}></Route>
-      <Route path="/speechtopicpage" element={<SpeechTopicPage />}></Route>
-      <Route path="/speechpicturepage" element={<SpeechPicturePage />}></Route>
+      <Route path="/speechtopic" element={<SpeechTopicPage />}></Route>
+      <Route path="/speechpicture" element={<SpeechPicturePage />}></Route>
       <Route path="/writesentence" element={<WriteSentencePage />}></Route>
       <Route
         path="/worddiscrimination"
