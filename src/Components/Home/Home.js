@@ -188,7 +188,7 @@ const Home = () => {
       <Menu
         defaultOpenKeys={["0"]}
         defaultSelectedKeys={["单词辨析"]}
-        style={{ width: 500 }}
+        style={{ flex: 1 }}
         mode="inline"
         forceSubMenuRender={true}
       >
@@ -204,7 +204,7 @@ const Home = () => {
           );
         })}
       </Menu>
-      <div>
+      <div style={{ flex: 9 }}>
         <div className={styles.header}>
           <div
             className={styles.button}

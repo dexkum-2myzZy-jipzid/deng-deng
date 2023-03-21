@@ -1,10 +1,10 @@
-.collection-view {
+.collectionView {
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
 }
 
-.collection-item {
+.collectionItem {
   margin: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -45,4 +45,29 @@
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
+}
+
+.gray {
+  color: gray;
+  border-color: gray;
+}
+
+.red {
+  color: #fc0d1b;
+  border-color: #fc0d1b;
+}
+
+.orange {
+  color: #f8812e;
+  border-color: #f8812e;
+}
+
+.green {
+  color: #47b255;
+  border-color: #47b255;
+}
+
+.ccc {
+  color: #ccc;
+  border-color: #ccc;
 }

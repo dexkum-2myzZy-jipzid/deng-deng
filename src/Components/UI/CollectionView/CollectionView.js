@@ -1,10 +1,13 @@
-// Refactored CollectionView.js
+import classNames from "classnames";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./CollectionView.css";
+import styles from "./CollectionView.module.css";
 
 const CollectionView = ({ type, array, difficulty }) => {
   const navigate = useNavigate();
+
+  console.log(difficulty);
+  console.log(array);
 
   const onClickHandler = (item) => {
     const routes = {
@@ -28,16 +31,22 @@ const CollectionView = ({ type, array, difficulty }) => {
   };
 
   return (
-    <div className="collection-view">
-      {array.split(",").map((item) => (
-        <div
-          className="collection-item"
-          key={item}
-          onClick={() => onClickHandler(item)}
-        >
-          <p>{item}</p>
-        </div>
-      ))}
+    <div className={styles.collectionView}>
+      {array.length > 0 &&
+        array.split(",").map((item) => (
+          <div
+            className={classNames(styles.collectionItem, {
+              [styles.red]: difficulty === 3,
+              [styles.orange]: difficulty === 2,
+              [styles.green]: difficulty === 1,
+              [styles.gray]: difficulty === 4,
+            })}
+            key={item}
+            onClick={() => onClickHandler(item)}
+          >
+            <p>{item}</p>
+          </div>
+        ))}
     </div>
   );
 };
