@@ -122,7 +122,7 @@ const Home = () => {
     ["写作面试", "口语面试"],
   ];
 
-  const [item, setItem] = useState(array[0]);
+  const [item, setItem] = useState(array[3]);
   const [difficulty, setDifficulty] = useState(0);
 
   function onClickMenuItem(e) {
