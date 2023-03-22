@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import InputArray from "../UI/InputArray/InputArray";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs, storeInLocalStorage } from "../Utils";
 import styles from "./FillWordsPage.module.css";
 
 const FillWordsPage = () => {
@@ -12,6 +12,7 @@ const FillWordsPage = () => {
   const difficulty = searchParams.get("difficulty");
   const [timer, setTimer] = useState(180);
   const [showAnswer, setShowAnswer] = useState(false);
+  const path = "fillwords";
 
   const data = require("../../QuestionCollection/阅读/单词填空/" +
     id +
@@ -36,6 +37,7 @@ const FillWordsPage = () => {
 
   const onSumbitHandler = () => {
     setShowAnswer(true);
+    storeInLocalStorage(path, id);
   };
 
   return (
@@ -44,7 +46,7 @@ const FillWordsPage = () => {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"fillwords"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 style={{ color: "red" }}>{secondsToMmSs(timer)}</h2>

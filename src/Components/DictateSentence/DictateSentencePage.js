@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs } from "../Utils";
 import styles from "./DictateSentencePage.module.css";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 import { MdVolumeUp } from "react-icons/md";
@@ -15,6 +15,7 @@ function DictateSentencePage() {
   const difficulty = searchParams.get("difficulty");
   const [wordsCount, setWordsCount] = useState(0);
   const textareaRef = useRef(null);
+  const path = "dictatesentence";
 
   const data = require("../../QuestionCollection/听力/听写句子/" +
     id +
@@ -55,7 +56,7 @@ function DictateSentencePage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"dictatesentence"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
@@ -91,7 +92,7 @@ function DictateSentencePage() {
           <p>{`字数：${wordsCount}`}</p>
         </div>
       </div>
-      <ShowAnswer answer={question.answer}></ShowAnswer>
+      <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
     </div>
   );
 }

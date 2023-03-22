@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import styles from "./ListeningToDistinguishWordsPage.module.css";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs, storeInLocalStorage } from "../Utils";
 import ProgressBar from "../UI/ProgressBar";
 import { MdVolumeUp } from "react-icons/md"; // speaker icon
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im"; // check icon
@@ -16,6 +16,7 @@ const ListenToDistinguishWordsPage = () => {
   const [timer, setTimer] = useState(90);
   const [selectedArray, setSelectedArray] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
+  const path = "listentodistinguishwords";
 
   const data = require("../../QuestionCollection/词汇/听音辩词/" +
     id +
@@ -57,6 +58,7 @@ const ListenToDistinguishWordsPage = () => {
 
   const onSumbitHandler = () => {
     setShowAnswer(true);
+    storeInLocalStorage(path, id);
   };
 
   const showAnswerResult = (option, index) => {
@@ -87,7 +89,7 @@ const ListenToDistinguishWordsPage = () => {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"listentodistinguishwords"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>

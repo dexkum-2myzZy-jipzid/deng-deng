@@ -2,12 +2,24 @@ import classNames from "classnames";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./CollectionView.module.css";
+import { MdOutlineDownloadDone } from "react-icons/md";
 
 const CollectionView = ({ type, array, difficulty }) => {
   const navigate = useNavigate();
-
-  console.log(difficulty);
-  console.log(array);
+  const user = localStorage.getItem("duolinggo_user");
+  let completedQuestions = [];
+  if (user === null) {
+    const value = {
+      userId: (Math.random() * 1000).toString(),
+    };
+    localStorage.setItem("duolinggo_user", JSON.stringify(value));
+  } else {
+    const userJson = JSON.parse(user);
+    const tmp = userJson[type];
+    if (tmp !== undefined) {
+      completedQuestions = tmp;
+    }
+  }
 
   const onClickHandler = (item) => {
     const routes = {
@@ -45,6 +57,9 @@ const CollectionView = ({ type, array, difficulty }) => {
             onClick={() => onClickHandler(item)}
           >
             <p>{item}</p>
+            {completedQuestions.indexOf(item) !== -1 && (
+              <MdOutlineDownloadDone />
+            )}
           </div>
         ))}
     </div>

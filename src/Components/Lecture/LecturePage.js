@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs } from "../Utils";
 import styles from "./LecturePage.module.css";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 import { MdVolumeUp } from "react-icons/md";
@@ -14,6 +14,7 @@ function LecturePage() {
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
   const [showReferenceText, setShowReferenceText] = useState(false);
+  const path = "lecture";
 
   const data = require("../../QuestionCollection/口语/听题演讲/" +
     id +
@@ -49,7 +50,7 @@ function LecturePage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"lecture"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
@@ -68,7 +69,7 @@ function LecturePage() {
           />
         </div>
       </div>
-      <ShowAnswer answer={question.answer}></ShowAnswer>
+      <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
       <p></p>
       <button onClick={onClickShowShowReferenceText}>
         {showReferenceText ? "隐藏题目参考原文" : "题目参考原文"}

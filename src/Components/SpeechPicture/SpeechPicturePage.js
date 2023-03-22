@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs } from "../Utils";
 import styles from "./SpeechPicturePage.module.css";
 
 const SpeechPicturePage = () => {
@@ -11,6 +11,7 @@ const SpeechPicturePage = () => {
   const difficulty = searchParams.get("difficulty");
   const [prepareTimer, setPrepareTimer] = useState(20);
   const [timer, setTimer] = useState(90);
+  const path = "speechpicture";
 
   const data = require("../../QuestionCollection/口语/看图演讲/" +
     id +
@@ -51,7 +52,7 @@ const SpeechPicturePage = () => {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"speechpicture"}
+        path={path}
       />
       <p>准备时间：{secondsToMmSs(prepareTimer)}</p>
       <h4 className={styles.timer} onClick={handleCountdownClick}>
@@ -59,7 +60,7 @@ const SpeechPicturePage = () => {
       </h4>
       <h2>准备以至少30秒的时间描述所给图片</h2>
       <img className={styles.img} src={question.photo} alt="logo.svg" />
-      <ShowAnswer answer={question.answer} />
+      <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
     </div>
   );
 };

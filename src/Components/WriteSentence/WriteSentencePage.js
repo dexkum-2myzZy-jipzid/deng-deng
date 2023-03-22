@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs } from "../Utils";
 import styles from "./WriteSentencePage.module.css";
 
 const WriteSentencePage = () => {
@@ -12,6 +12,7 @@ const WriteSentencePage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
+  const path = "writesentence";
 
   const data = require("../../QuestionCollection/写作/看图写句/" +
     id +
@@ -38,7 +39,7 @@ const WriteSentencePage = () => {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"writesentence"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
@@ -62,7 +63,7 @@ const WriteSentencePage = () => {
         />
       </div>
       <p>字数：{inputText.length}</p>
-      <ShowAnswer answer={question.answer} />
+      <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
     </div>
   );
 };

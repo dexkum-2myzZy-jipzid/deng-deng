@@ -1,4 +1,4 @@
-function secondsToMmSs(seconds) {
+export function secondsToMmSs(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -7,4 +7,22 @@ function secondsToMmSs(seconds) {
   return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-export default secondsToMmSs;
+export function storeInLocalStorage(type, id) {
+  let userJson = localStorage.getItem("duolinggo_user");
+  let user = null;
+  if (userJson === null) {
+    user = {
+      userId: Math.random().toString(),
+    };
+  } else {
+    user = JSON.parse(userJson);
+  }
+  let typeArray = user[type];
+  if (typeArray !== undefined) {
+    user[type] = [...typeArray, id];
+  } else {
+    user[type] = [id];
+  }
+
+  localStorage.setItem("duolinggo_user", JSON.stringify(user));
+}

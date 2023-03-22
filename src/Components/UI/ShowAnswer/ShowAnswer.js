@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { storeInLocalStorage } from "../../Utils";
 import styles from "./ShowAnswer.module.css";
 
 const ShowAnswer = (props) => {
@@ -8,6 +9,7 @@ const ShowAnswer = (props) => {
     setShowAnswer((preState) => {
       return !preState;
     });
+    storeInLocalStorage(props.path, props.id);
   };
 
   return (

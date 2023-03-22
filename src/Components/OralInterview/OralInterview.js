@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs } from "../Utils";
 import styles from "./OralInterview.module.css";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 import { TbDeviceComputerCamera } from "react-icons/tb";
@@ -13,6 +13,7 @@ function OralInterviewPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
+  const path = "oralinterview";
 
   const data = require("../../QuestionCollection/面试/口语面试/" +
     id +
@@ -39,7 +40,7 @@ function OralInterviewPage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"oralinterview"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
@@ -56,7 +57,7 @@ function OralInterviewPage() {
           <TbDeviceComputerCamera size={300} style={{ color: "lightgrey" }} />
         </div>
       </div>
-      <ShowAnswer answer={question.answer}></ShowAnswer>
+      <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
     </div>
   );
 }
