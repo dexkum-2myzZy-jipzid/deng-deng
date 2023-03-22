@@ -19,7 +19,9 @@ export function storeInLocalStorage(type, id) {
   }
   let typeArray = user[type];
   if (typeArray !== undefined) {
-    user[type] = [...typeArray, id];
+    if (typeArray.indexOf(id) === -1) {
+      user[type] = [...typeArray, id];
+    }
   } else {
     user[type] = [id];
   }
