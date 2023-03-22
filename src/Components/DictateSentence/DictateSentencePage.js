@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
@@ -14,6 +14,7 @@ function DictateSentencePage() {
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
   const [wordsCount, setWordsCount] = useState(0);
+  const textareaRef = useRef(null);
 
   const data = require("../../QuestionCollection/听力/听写句子/" +
     id +
@@ -45,6 +46,7 @@ function DictateSentencePage() {
   const onClickSpeakerHander = (url) => {
     const sound = new Audio(url);
     sound.play();
+    textareaRef.current.focus();
   };
 
   return (
@@ -77,6 +79,7 @@ function DictateSentencePage() {
             // readonly="readonly"
             autocomplete="off"
             placeholder="您的回复"
+            ref={textareaRef}
             style={{
               minHeight: "54px",
               height: "200px",
