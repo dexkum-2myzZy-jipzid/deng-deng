@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs, storeInLocalStorage } from "../Utils";
 import styles from "./WordDiscriminationPage.module.css";
 
 function WordDiscriminationPage() {
@@ -11,6 +11,7 @@ function WordDiscriminationPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
+  const path = "worddiscrimination";
 
   const data = require("../../QuestionCollection/词汇/单词辨析/" +
     id +
@@ -50,6 +51,7 @@ function WordDiscriminationPage() {
 
   const onSumbitHandler = () => {
     setShowAnswer(true);
+    storeInLocalStorage(path, id);
   };
 
   const showAnswerResult = (option, index) => {
@@ -82,7 +84,7 @@ function WordDiscriminationPage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"worddiscrimination"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>

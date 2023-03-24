@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs } from "../Utils";
 import styles from "./WritingInterviewPage.module.css";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 
@@ -13,6 +13,7 @@ function WritingInterviewPage() {
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
   const [wordsCount, setWordsCount] = useState(0);
+  const path = "writinginterview";
 
   const data = require("../../QuestionCollection/面试/写作面试/" +
     id +
@@ -47,7 +48,7 @@ function WritingInterviewPage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"writinginterview"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
@@ -86,7 +87,7 @@ function WritingInterviewPage() {
           <p>{`字数：${wordsCount}`}</p>
         </div>
       </div>
-      <ShowAnswer answer={question.answer}></ShowAnswer>
+      <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
     </div>
   );
 }

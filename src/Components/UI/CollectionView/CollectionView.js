@@ -1,54 +1,67 @@
+import classNames from "classnames";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./CollectionView.css";
+import styles from "./CollectionView.module.css";
+import { MdOutlineDownloadDone } from "react-icons/md";
 
-const CollectionView = (props) => {
-  const type = props.type;
-  const array = props.array.split(",");
-  const difficulty = props.difficulty;
+const CollectionView = ({ type, array, difficulty }) => {
   const navigate = useNavigate();
+  const user = localStorage.getItem("duolinggo_user");
+  let completedQuestions = [];
+  if (user === null) {
+    const value = {
+      userId: (Math.random() * 1000).toString(),
+    };
+    localStorage.setItem("duolinggo_user", JSON.stringify(value));
+  } else {
+    const userJson = JSON.parse(user);
+    const tmp = userJson[type];
+    if (tmp !== undefined) {
+      completedQuestions = tmp;
+    }
+  }
 
   const onClickHandler = (item) => {
-    if (type === "speechtopic") {
-      navigate(`/speechtopicpage?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "speechpicture") {
-      navigate(`/speechpicturepage?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "writesentence") {
-      navigate(`/writesentence?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "worddiscrimination") {
-      navigate(`/worddiscrimination?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "listentodistinguishwords") {
-      navigate(`/listentodistinguishwords?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "fillwords") {
-      navigate(`/fillwords?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "interactive") {
-      navigate(`/interactive?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "writinginterview") {
-      navigate(`/writinginterview?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "oralinterview") {
-      navigate(`/oralinterview?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "dictatesentence") {
-      navigate(`/dictatesentence?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "lecture") {
-      navigate(`/lecture?id=${item}&difficulty=${difficulty}`);
-    } else if (type === "shortessay") {
-      navigate(`/shortessay?id=${item}&difficulty=${difficulty}`);
+    const routes = {
+      speechtopic: "/speechtopic",
+      speechpicture: "/speechpicture",
+      writesentence: "/writesentence",
+      worddiscrimination: "/worddiscrimination",
+      listentodistinguishwords: "/listentodistinguishwords",
+      fillwords: "/fillwords",
+      interactive: "/interactive",
+      writinginterview: "/writinginterview",
+      oralinterview: "/oralinterview",
+      dictatesentence: "/dictatesentence",
+      lecture: "/lecture",
+      shortessay: "/shortessay",
+    };
+
+    if (routes[type]) {
+      navigate(`${routes[type]}?id=${item}&difficulty=${difficulty}`);
     }
   };
 
   return (
-    <div className="collection-view">
-      {array.map((item) => (
-        <div
-          className="collection-item"
-          key={item}
-          onClick={() => onClickHandler(item)}
-        >
-          <p>{item}</p>
-          {/* <p>{item.description}</p> */}
-          {/* <img src={item.imageUrl} alt={item.title} /> */}
-        </div>
-      ))}
+    <div className={styles.collectionView}>
+      {array.length > 0 &&
+        array.split(",").map((item) => (
+          <div
+            className={classNames(styles.collectionItem, {
+              [styles.red]: difficulty === 3,
+              [styles.orange]: difficulty === 2,
+              [styles.green]: difficulty === 1,
+              [styles.gray]: difficulty === 4,
+            })}
+            key={item}
+            onClick={() => onClickHandler(item)}
+          >
+            <p>{item}</p>
+            {completedQuestions.indexOf(item) !== -1 && (
+              <MdOutlineDownloadDone />
+            )}
+          </div>
+        ))}
     </div>
   );
 };

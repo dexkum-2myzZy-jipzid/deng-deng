@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs } from "../Utils";
 import styles from "./ShortEssayPage.module.css";
 import ShowAnswer from "../UI/ShowAnswer/ShowAnswer";
 
@@ -13,6 +13,7 @@ function ShortEssayPage() {
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
   const [wordsCount, setWordsCount] = useState(0);
+  const path = "shortessay";
 
   const data = require("../../QuestionCollection/写作/小作文/" + id + ".json");
   const question = data.data;
@@ -45,7 +46,7 @@ function ShortEssayPage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"shortessay"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 className={styles.timer}>{secondsToMmSs(timer)}</h2>
@@ -75,7 +76,7 @@ function ShortEssayPage() {
           <p>{`字数：${wordsCount}`}</p>
         </div>
       </div>
-      <ShowAnswer answer={question.answer}></ShowAnswer>
+      <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
     </div>
   );
 }

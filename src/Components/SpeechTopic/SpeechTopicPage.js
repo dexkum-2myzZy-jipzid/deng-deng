@@ -8,6 +8,7 @@ function SpeechTopicPage() {
   const id = searchParams.get("id");
   const difficulty = searchParams.get("difficulty");
   const [timer, setTimer] = useState(30);
+  const path = "speechtopic";
 
   const data = require("../../QuestionCollection/口语/看题演讲/" +
     id +
@@ -34,7 +35,7 @@ function SpeechTopicPage() {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"speechtopicpage"}
+        path={path}
       />
       <h1 style={styles.title}>看题演讲</h1>
       <div onClick={handleCountdownClick}>
@@ -57,7 +58,9 @@ function SpeechTopicPage() {
           )}
         </div>
       )}
-      {question && <ShowAnswer answer={question.answer} />}
+      {question && (
+        <ShowAnswer answer={question.answer} path={path} id={id}></ShowAnswer>
+      )}
     </div>
   );
 }

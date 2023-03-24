@@ -29,46 +29,6 @@ const Home = () => {
     shortEssayArray,
   } = Questions();
 
-  // const onClickHandler1 = (type) => {
-  //   if (type === "speechtopic") {
-  //     const myArrayString = topicArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "speechpicture") {
-  //     const myArrayString = pictureArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "writesentence") {
-  //     const myArrayString = sentenceArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "worddiscrimination") {
-  //     const myArrayString = wordDiscriminationArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "listentodistinguishwords") {
-  //     const myArrayString = listentodistinguishwordsArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "fillwords") {
-  //     const myArrayString = fillWordsArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "interactive") {
-  //     const myArrayString = interactiveArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "writinginterview") {
-  //     const myArrayString = writingInterviewArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "oralinterview") {
-  //     const myArrayString = oralInterviewArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "dictatesentence") {
-  //     const myArrayString = dictateSentencesArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "lecture") {
-  //     const myArrayString = lectureArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   } else if (type === "shortessay") {
-  //     const myArrayString = shortEssayArray.join(",");
-  //     navigate(`/collectionview?type=${type}&array=${myArrayString}`);
-  //   }
-  // };
-
   const array = [
     { type: "speechtopic", title: "看题演讲", array: topicArray.join(",") },
     { type: "speechpicture", title: "看图演讲", array: pictureArray.join(",") },
@@ -122,13 +82,13 @@ const Home = () => {
     ["写作面试", "口语面试"],
   ];
 
-  const [item, setItem] = useState(array[0]);
+  const [item, setItem] = useState(array[3]);
   const [difficulty, setDifficulty] = useState(0);
 
   function onClickMenuItem(e) {
     const title = e.keyPath[0];
-    const item = array.filter((e) => e["title"].localeCompare(title) === 0);
-    setItem(item[0]);
+    const item = array.find((e) => e["title"].localeCompare(title) === 0);
+    setItem(item);
     setDifficulty(0);
   }
 
@@ -143,44 +103,12 @@ const Home = () => {
     <TeamOutlined />,
   ];
 
-  const onClickAllHander = () => {
-    const list = Difficulty()[item["type"]][0];
+  const onClickDifficultyHandler = (difficultyIndex) => {
+    const list = Difficulty()[item["type"]][difficultyIndex];
     setItem((pre) => {
       return { ...pre, array: list.join(",") };
     });
-    setDifficulty(0);
-  };
-
-  const onClickHardHander = () => {
-    const list = Difficulty()[item["type"]][3];
-    setItem((pre) => {
-      return { ...pre, array: list.join(",") };
-    });
-    setDifficulty(3);
-  };
-
-  const onClickMiddleHander = () => {
-    const list = Difficulty()[item["type"]][2];
-    setItem((pre) => {
-      return { ...pre, array: list.join(",") };
-    });
-    setDifficulty(2);
-  };
-
-  const onClickEasyHander = () => {
-    const list = Difficulty()[item["type"]][1];
-    setItem((pre) => {
-      return { ...pre, array: list.join(",") };
-    });
-    setDifficulty(1);
-  };
-
-  const onClickUndefinedHander = () => {
-    const list = Difficulty()[item["type"]][4];
-    setItem((pre) => {
-      return { ...pre, array: list.join(",") };
-    });
-    setDifficulty(4);
+    setDifficulty(difficultyIndex);
   };
 
   return (
@@ -188,7 +116,7 @@ const Home = () => {
       <Menu
         defaultOpenKeys={["0"]}
         defaultSelectedKeys={["单词辨析"]}
-        style={{ width: 500 }}
+        style={{ flex: 1 }}
         mode="inline"
         forceSubMenuRender={true}
       >
@@ -204,37 +132,40 @@ const Home = () => {
           );
         })}
       </Menu>
-      <div>
+      <div style={{ flex: 9 }}>
         <div className={styles.header}>
           <div
             className={styles.button}
             style={{ color: "black" }}
-            onClick={onClickAllHander}
+            onClick={() => onClickDifficultyHandler(0)}
           >
             全部
           </div>
           <div
             className={styles.button}
             style={{ backgroundColor: "#fc0d1b" }}
-            onClick={onClickHardHander}
+            onClick={() => onClickDifficultyHandler(3)}
           >
             难（120以上）
           </div>
           <div
             className={styles.button}
             style={{ backgroundColor: "#f8812e" }}
-            onClick={onClickMiddleHander}
+            onClick={() => onClickDifficultyHandler(2)}
           >
             一般（105~115）
           </div>
           <div
             className={styles.button}
             style={{ backgroundColor: "#47b255" }}
-            onClick={onClickEasyHander}
+            onClick={() => onClickDifficultyHandler(1)}
           >
             简单（100以下）
           </div>
-          <div className={styles.button} onClick={onClickUndefinedHander}>
+          <div
+            className={styles.button}
+            onClick={() => onClickDifficultyHandler(4)}
+          >
             难度不明确
           </div>
         </div>

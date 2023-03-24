@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import ProgressBar from "../UI/ProgressBar";
-import secondsToMmSs from "../Utils";
+import { secondsToMmSs, storeInLocalStorage } from "../Utils";
 import styles from "./InteractiveReadingPage.module.css";
 import React from "react";
 
@@ -15,6 +15,7 @@ const InteractiveReadingPage = () => {
   const [timer, setTimer] = useState(seconds);
   const [showAnswer, setShowAnswer] = useState(false);
   const [pageIndex, setPageIndex] = useState(0);
+  const path = "interactive";
 
   const data = require("../../QuestionCollection/阅读/互动阅读/" +
     id +
@@ -39,6 +40,7 @@ const InteractiveReadingPage = () => {
     setPageIndex((pre) => pre + 1);
     if (pageIndex === 5) {
       setShowAnswer(true);
+      storeInLocalStorage(path, id);
     }
   };
 
@@ -443,7 +445,7 @@ const InteractiveReadingPage = () => {
         difficultyName={question.difficultyName}
         difficulty={difficulty}
         id={id}
-        path={"interactive"}
+        path={path}
       />
       <div onClick={onClickRestartHandler}>
         <h2 style={{ color: "red" }}>{secondsToMmSs(timer)}</h2>

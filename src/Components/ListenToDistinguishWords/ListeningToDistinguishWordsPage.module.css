@@ -6,12 +6,12 @@
   margin: 20px;
   align-items: center;
   text-align: center;
+  justify-content: center;
 }
 
 .collection {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
 }
 
 .collectionItem {
@@ -19,7 +19,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
-  width: 100px;
+  width: 120px;
   height: 50px;
   position: relative;
   align-items: center;
@@ -64,6 +64,7 @@
   justify-content: center;
   display: flex;
   color: gray;
+  flex: 3;
 }
 
 .check {
@@ -75,6 +76,9 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  flex: 1;
   color: gray;
+  padding-left: 10px;
+  padding-right: 10px;
   /* background-color: #f8812e; */
 }
