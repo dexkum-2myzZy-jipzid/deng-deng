@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import DifficultyLabelAndNext from "../UI/DifficultyLabelAndNext/DifficultyLabelAndNext";
 import InputArray from "../UI/InputArray/InputArray";
@@ -40,6 +40,37 @@ const FillWordsPage = () => {
     storeInLocalStorage(path, id);
   };
 
+  const childRefs = useMemo(
+    () =>
+      Array(array.length)
+        .fill(0)
+        .map(() => React.createRef()),
+    []
+  );
+
+  let inputArrayIndex = 0;
+  const inputArray = (e, index) => {
+    const input = (
+      <InputArray
+        key={index.toString()}
+        word={words.shift()}
+        showAnswer={showAnswer}
+        partBlank={e}
+        moveNextInputArray={moveNextInputArrayHandler}
+        ref={childRefs[inputArrayIndex]}
+      />
+    );
+    inputArrayIndex += 1;
+    return input;
+  };
+
+  const moveNextInputArrayHandler = (ref) => {
+    const index = childRefs.findIndex((v) => v === ref);
+    if (index <= inputArrayIndex && index > -1) {
+      childRefs[index + 1].current.moveNext();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <DifficultyLabelAndNext
@@ -56,12 +87,7 @@ const FillWordsPage = () => {
       <div style={{ textAlign: "left" }}>
         {question.partBlankContent.split(" ").map((e, index) =>
           e.indexOf("_") !== -1 ? (
-            <InputArray
-              key={index.toString()}
-              word={words.shift()}
-              showAnswer={showAnswer}
-              partBlank={e}
-            />
+            inputArray(e, index)
           ) : (
             <span
               key={index}

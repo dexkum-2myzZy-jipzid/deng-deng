@@ -1,8 +1,14 @@
 import classNames from "classnames";
-import React, { useState, useRef, Fragment } from "react";
+import React, {
+  useState,
+  useRef,
+  Fragment,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
 import styles from "./InputArray.module.css";
 
-function InputArray(props) {
+const InputArray = forwardRef((props, ref) => {
   //展示单词数量
   const defaultLetterCnt = props.partBlank.indexOf("_");
   const inputs = Array.from({ length: props.word.length }, (_, i) =>
@@ -27,8 +33,16 @@ function InputArray(props) {
       inputRefs.current[index + 1].focus();
     } else if (event.target.value.length === 0) {
       inputRefs.current[index - 1].focus();
+    } else if (index === values.length - 1) {
+      props.moveNextInputArray(ref);
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    moveNext() {
+      inputRefs.current[defaultLetterCnt].focus();
+    },
+  }));
 
   const styleColors = (value, index) => {
     if (value.length === 0) {
@@ -80,6 +94,6 @@ function InputArray(props) {
       </span>
     </Fragment>
   );
-}
+});
 
 export default InputArray;
